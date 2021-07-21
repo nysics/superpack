@@ -1,6 +1,7 @@
 :root {
   --color-text-default: rgb(55, 53, 47);
   --color-text-default-light: rgba(55, 53, 47, 0.6);
+  --color-text-default-ondark: white;
   --color-text-gray: rgb(155, 154, 151);
   --color-text-brown: rgb(100, 71, 58);
   --color-text-orange: rgb(217, 115, 13);
@@ -51,8 +52,129 @@
   --collection-card-cover-size-large: 320px;
   --navHeight: 100px;
   --button-radius: 40px;
+  --box-radius: 30px;
   --contentMaxWidth: 1200px;
   --defaultOuterPadding: calc(env(safe-area-inset-left) + 96px);
   --color-nav-bg: rgba(20, 20, 20, .9);
   --color-highlight-default: #24AFFF;
+}
+
+html, html .notion-semantic-string, body, body .notion-semantic-string {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 .notion-semantic-string, h2 .notion-semantic-string, h3 .notion-semantic-string, h4 .notion-semantic-string, h5 .notion-semantic-string, .notion-heading .notion-semantic-string {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  line-height: 0.8em !important;
+}
+h1 .notion-semantic-string strong, h2 .notion-semantic-string strong, h3 .notion-semantic-string strong, h4 .notion-semantic-string strong, h5 .notion-semantic-string strong, .notion-heading .notion-semantic-string strong {
+  font-family: "Permanent Marker", cursive;
+}
+
+h1 .notion-semantic-string {
+  font-weight: 700 !important;
+  font-size: 1.5em;
+}
+
+h3 .notion-semantic-string {
+  text-transform: uppercase;
+}
+
+#page-index .notion-header {
+  display: none;
+}
+
+/* Collections */
+.notion-collection > div:first-child {
+  display: none;
+}
+.notion-collection.hero, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 {
+  width: 100%;
+  align-self: center;
+}
+.notion-collection.hero .notion-collection-gallery, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery {
+  grid-template-rows: 75vh auto !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+.notion-collection.hero .notion-collection-gallery .notion-collection-card, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery .notion-collection-card {
+  height: 250px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-semantic-string, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery .notion-collection-card .notion-semantic-string {
+  color: var(--color-text-default-ondark);
+}
+.notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-property__title, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery .notion-collection-card .notion-property__title {
+  position: relative;
+  z-index: 2;
+  padding: 20px 40px;
+  text-shadow: 0px 3px 25px rgba(0, 0, 0, 0.7);
+  overflow: auto;
+  display: block;
+}
+.notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-property__title .notion-semantic-string, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery .notion-collection-card .notion-property__title .notion-semantic-string {
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 2em !important;
+}
+.notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-collection-card__cover div img, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery .notion-collection-card .notion-collection-card__cover div img {
+  opacity: 0.7;
+}
+.notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery > .notion-collection-card:first-child {
+  justify-self: center;
+  align-self: center;
+  grid-column: 1/-1;
+  height: 75vh;
+  --newRadius: calc(var(--box-radius) * 2);
+  border-radius: 0px 0px var(--newRadius) var(--newRadius) !important;
+}
+.notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title {
+  padding: 20px 40px;
+}
+.notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title .notion-semantic-string, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title .notion-semantic-string {
+  font-size: 4em !important;
+}
+.notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__cover div img, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__cover div img {
+  opacity: 1;
+}
+.notion-collection .notion-collection-gallery {
+  border-top: none;
+  padding-top: 0px;
+}
+.notion-collection .notion-collection-gallery .notion-collection-card {
+  border-radius: var(--box-radius);
+  box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.15);
+}
+.notion-collection .notion-collection-gallery .notion-collection-card a.notion-link {
+  border-radius: inherit;
+}
+.notion-collection .notion-collection-gallery .notion-collection-card .notion-collection-card__cover {
+  height: 100%;
+  max-height: unset;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+  border-radius: 0px;
+}
+.notion-collection .notion-collection-gallery .notion-collection-card .notion-collection-card__cover div {
+  height: inherit;
+  max-height: inherit;
+}
+
+/* Callouts */
+.notion-callout {
+  border-radius: var(--box-radius) !important;
+  border-width: 3px !important;
+  width: auto !important;
+}
+
+/* Page COntent */
+/* Embeds */
+.notion-embed.notion-maps .notion-embed__content iframe {
+  border-radius: 20px;
+  box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.2);
 }/*# sourceMappingURL=sitestyle-block.css.map */
