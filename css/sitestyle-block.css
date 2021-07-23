@@ -1,75 +1,92 @@
 :root {
-  --color-text-default: rgb(55, 53, 47);
-  --color-text-default-light: rgba(55, 53, 47, 0.6);
-  --color-text-default-ondark: white;
-  --color-text-gray: rgb(155, 154, 151);
-  --color-text-brown: rgb(100, 71, 58);
-  --color-text-orange: rgb(217, 115, 13);
-  --color-text-yellow: rgb(223, 171, 1);
-  --color-text-green: rgb(15, 123, 108);
-  --color-text-blue: rgb(11, 110, 153);
-  --color-text-purple: rgb(105, 64, 165);
-  --color-text-pink: rgb(173, 26, 114);
-  --color-text-red: rgb(224, 62, 62);
-  --color-bg-default: rgb(255, 255, 255);
-  --color-bg-gray: rgb(235, 236, 237);
-  --color-bg-brown: rgb(233, 229, 227);
-  --color-bg-orange: rgb(250, 235, 221);
-  --color-bg-yellow: rgb(251, 243, 219);
-  --color-bg-green: rgb(221, 237, 234);
-  --color-bg-blue: rgb(221, 235, 241);
-  --color-bg-purple: rgb(234, 228, 242);
-  --color-bg-pink: rgb(244, 223, 235);
-  --color-bg-red: rgb(251, 228, 228);
-  --color-bg-gray-light: rgba(235, 236, 237, 0.3);
-  --color-bg-brown-light: rgba(233, 229, 227, 0.3);
-  --color-bg-orange-light: rgba(250, 235, 221, 0.3);
-  --color-bg-yellow-light: rgba(251, 243, 219, 0.3);
-  --color-bg-green-light: rgba(221, 237, 234, 0.3);
-  --color-bg-blue-light: rgba(221, 235, 241, 0.3);
-  --color-bg-purple-light: rgba(234, 228, 242, 0.3);
-  --color-bg-pink-light: rgba(244, 223, 235, 0.3);
-  --color-bg-red-light: rgba(251, 228, 228, 0.3);
-  --color-pill-default: rgba(206, 205, 202, 0.5);
-  --color-pill-gray: rgba(155, 154, 151, 0.4);
-  --color-pill-brown: rgba(140, 46, 0, 0.2);
-  --color-pill-orange: rgba(245, 93, 0, 0.2);
-  --color-pill-yellow: rgba(233, 168, 0, 0.2);
-  --color-pill-green: rgba(0, 135, 107, 0.2);
-  --color-pill-blue: rgba(0, 120, 223, 0.2);
-  --color-pill-purple: rgba(103, 36, 222, 0.2);
-  --color-pill-pink: rgba(221, 0, 129, 0.2);
-  --color-pill-red: rgba(255, 0, 26, 0.2);
-  --color-ui-hover-bg: rgba(55, 53, 47, 0.08);
-  --color-ui-hover-bg-light: rgba(55, 53, 47, 0.03);
-  --color-card-bg: rgb(255, 255, 255);
-  --color-accent-bg: rgb(46, 170, 220);
-  --color-border-default: rgba(235, 236, 237, 0.8);
-  --color-border-dark: rgba(55, 53, 47, 0.16);
-  --column-spacing: 46px;
-  --collection-card-cover-size-small: 172px;
-  --collection-card-cover-size-medium: 260px;
-  --collection-card-cover-size-large: 320px;
-  --navHeight: 100px;
-  --button-radius: 40px;
+  --color-text-default: rgb(55, 53, 47) !important;
+  --color-text-default-light: rgba(55, 53, 47, 0.6) !important;
+  --color-text-default-ondark: white !important;
+  --color-text-gray: rgb(155, 154, 151) !important;
+  --color-text-brown: rgb(100, 71, 58) !important;
+  --color-text-orange: rgb(217, 115, 13) !important;
+  --color-text-yellow: rgb(223, 171, 1) !important;
+  --color-text-green: rgb(15, 123, 108) !important;
+  --color-text-blue: rgb(11, 110, 153) !important;
+  --color-text-purple: rgb(105, 64, 165) !important;
+  --color-text-pink: rgb(173, 26, 114) !important;
+  --color-text-red: rgb(224, 62, 62) !important;
+  --color-bg-default: rgb(255, 255, 255) !important;
+  --color-bg-gray: rgb(235, 236, 237) !important;
+  --color-bg-brown: rgb(233, 229, 227) !important;
+  --color-bg-orange: rgb(250, 235, 221) !important;
+  --color-bg-yellow: rgb(251, 243, 219) !important;
+  --color-bg-green: rgb(221, 237, 234) !important;
+  --color-bg-blue: rgb(221, 235, 241) !important;
+  --color-bg-purple: rgb(234, 228, 242) !important;
+  --color-bg-pink: rgb(244, 223, 235) !important;
+  --color-bg-red: rgb(251, 228, 228) !important;
+  --color-bg-gray-light: rgba(235, 236, 237, 0.3) !important;
+  --color-bg-brown-light: rgba(233, 229, 227, 0.3) !important;
+  --color-bg-orange-light: rgba(250, 235, 221, 0.3) !important;
+  --color-bg-yellow-light: rgba(251, 243, 219, 0.3) !important;
+  --color-bg-green-light: rgba(221, 237, 234, 0.3) !important;
+  --color-bg-blue-light: rgba(221, 235, 241, 0.3) !important;
+  --color-bg-purple-light: rgba(234, 228, 242, 0.3) !important;
+  --color-bg-pink-light: rgba(244, 223, 235, 0.3) !important;
+  --color-bg-red-light: rgba(251, 228, 228, 0.3) !important;
+  --color-pill-default: rgba(206, 205, 202, 0.5) !important;
+  --color-pill-gray: rgba(155, 154, 151, 0.4) !important;
+  --color-pill-brown: rgba(140, 46, 0, 0.2) !important;
+  --color-pill-orange: rgba(245, 93, 0, 0.2) !important;
+  --color-pill-yellow: rgba(233, 168, 0, 0.2) !important;
+  --color-pill-green: rgba(0, 135, 107, 0.2) !important;
+  --color-pill-blue: rgba(0, 120, 223, 0.2) !important;
+  --color-pill-purple: rgba(103, 36, 222, 0.2) !important;
+  --color-pill-pink: rgba(221, 0, 129, 0.2) !important;
+  --color-pill-red: rgba(255, 0, 26, 0.2) !important;
+  --color-ui-hover-bg: rgba(55, 53, 47, 0.08) !important;
+  --color-ui-hover-bg-light: rgba(55, 53, 47, 0.03) !important;
+  --color-card-bg: rgb(255, 255, 255) !important;
+  --color-accent-bg: rgb(46, 170, 220) !important;
+  --color-border-default: rgba(235, 236, 237, 0.8) !important;
+  --color-border-dark: rgba(55, 53, 47, 0.16) !important;
+  --column-spacing: 46px !important;
+  --collection-card-cover-size-small: 172px !important;
+  --collection-card-cover-size-medium: 260px !important;
+  --collection-card-cover-size-large: 320px !important;
+  --navHeight: 80px !important;
+  --button-radius: 20px !important;
+  --button-color: #159393;
   --box-radius: 30px;
   --contentMaxWidth: 1200px;
   --defaultOuterPadding: calc(env(safe-area-inset-left) + 96px);
   --color-nav-bg: rgba(20, 20, 20, .9);
   --color-highlight-default: #24AFFF;
+  --title-font-family: "Montserrat", sans-serif;
+  --boxshadow-default: 0px 3px 25px rgba(0,0,0,.2);
+  --boxshadow-heavy: 0px 5px 35px rgba(0,0,0,.4);
+  --text-shadow-default: 0px 3px 25px rgba(24, 15, 15, 1);
+  --padding-safe-area-left: calc(env(safe-area-inset-left) + 96px);
+  --padding-safe-area-right: calc(env(safe-area-inset-right) + 96px);
 }
 
 html, html .notion-semantic-string, body, body .notion-semantic-string {
   font-family: "Open Sans", sans-serif;
 }
 
+body {
+  background: linear-gradient(#d6f7ff, white) !important;
+  background-position: fixed;
+  background-size: 100vh;
+}
+
 h1 .notion-semantic-string, h2 .notion-semantic-string, h3 .notion-semantic-string, h4 .notion-semantic-string, h5 .notion-semantic-string, .notion-heading .notion-semantic-string {
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--title-font-family);
   font-weight: 300;
   line-height: 0.8em !important;
 }
 h1 .notion-semantic-string strong, h2 .notion-semantic-string strong, h3 .notion-semantic-string strong, h4 .notion-semantic-string strong, h5 .notion-semantic-string strong, .notion-heading .notion-semantic-string strong {
+  text-transform: uppercase;
+}
+h1 .notion-semantic-string em, h2 .notion-semantic-string em, h3 .notion-semantic-string em, h4 .notion-semantic-string em, h5 .notion-semantic-string em, .notion-heading .notion-semantic-string em {
   font-family: "Permanent Marker", cursive;
+  font-style: normal;
 }
 
 h1 .notion-semantic-string {
@@ -85,6 +102,83 @@ h3 .notion-semantic-string {
   display: none;
 }
 
+/* Navbar */
+.n-navbar {
+  display: block;
+  padding-left: var(--padding-safe-area-left);
+  padding-right: var(--padding-safe-area-right);
+  width: 100%;
+  height: calc(var(--navHeight) + 20px);
+  position: fixed;
+  top: calc(0px + env(safe-area-inset-top));
+  left: 0px;
+  box-sizing: border-box;
+  z-index: 1000;
+  padding-top: 20px;
+}
+.n-navbar .n-navbar__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 10px 25px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.6));
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: calc(var(--box-radius) * 2);
+  border: solid 2px rgba(255, 255, 255, 0.3);
+  box-shadow: var(--boxshadow-heavy);
+}
+.n-navbar .n-navbar__divider {
+  flex-grow: 2;
+}
+.n-navbar .n-navbar__siteinfo {
+  display: flex;
+  flex-flow: row;
+}
+.n-navbar .n-navbar__siteinfo img {
+  height: 100%;
+  max-height: var(--navHeight);
+  max-height: var(--navHeight);
+  padding: 10px 0px;
+}
+.n-navbar .n-navbar__navlinks, .n-navbar .n-navbar__herolinks {
+  align-items: center;
+  flex-wrap: nowrap;
+  list-style-type: none !important;
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+}
+.n-navbar .n-navbar__navlinks li a {
+  padding: 8px 15px;
+  text-transform: uppercase;
+  background-color: transparent;
+  border-radius: calc(var(--button-radius) / 2);
+  transition: all 0.2s ease-in-out;
+  color: black;
+}
+.n-navbar .n-navbar__navlinks li a:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: var(--color-highlight-default);
+}
+.n-navbar .n-navbar__herolinks {
+  margin-left: 10px;
+}
+.n-navbar .n-navbar__herolinks li a {
+  padding: 5px 20px;
+  text-transform: uppercase;
+  background-color: var(--button-color);
+  border: solid 2px white;
+  box-shadow: var(--boxshadow-default);
+  border-radius: calc(var(--button-radius));
+  color: var(--color-text-default-ondark);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
 /* Collections */
 .notion-collection > div:first-child {
   display: none;
@@ -94,11 +188,11 @@ h3 .notion-semantic-string {
   align-self: center;
 }
 .notion-collection.hero .notion-collection-gallery, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery {
-  grid-template-rows: 75vh auto !important;
+  grid-template-rows: 50vw auto !important;
   grid-template-columns: repeat(4, 1fr) !important;
 }
 .notion-collection.hero .notion-collection-gallery .notion-collection-card, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery .notion-collection-card {
-  height: 250px;
+  height: 15vw;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
@@ -109,15 +203,15 @@ h3 .notion-semantic-string {
 .notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-property__title, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery .notion-collection-card .notion-property__title {
   position: relative;
   z-index: 2;
-  padding: 20px 40px;
-  text-shadow: 0px 3px 25px rgba(0, 0, 0, 0.7);
+  margin: 1vw 2vw;
+  text-shadow: var(--text-shadow-default);
   overflow: auto;
   display: block;
 }
 .notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-property__title .notion-semantic-string, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery .notion-collection-card .notion-property__title .notion-semantic-string {
   font-family: "Montserrat", sans-serif !important;
   font-weight: 700 !important;
-  font-size: 2em !important;
+  font-size: 2vw !important;
 }
 .notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-collection-card__cover div img, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery .notion-collection-card .notion-collection-card__cover div img {
   opacity: 0.7;
@@ -126,18 +220,26 @@ h3 .notion-semantic-string {
   justify-self: center;
   align-self: center;
   grid-column: 1/-1;
-  height: 75vh;
+  height: 50vw;
   --newRadius: calc(var(--box-radius) * 2);
   border-radius: 0px 0px var(--newRadius) var(--newRadius) !important;
 }
 .notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title {
-  padding: 20px 40px;
+  margin: 20px 40px;
 }
 .notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title .notion-semantic-string, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title .notion-semantic-string {
   font-size: 4em !important;
 }
 .notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__cover div img, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__cover div img {
   opacity: 1;
+}
+.notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__content, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__content {
+  position: relative;
+}
+.notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-property.notion-property__text.property-546e703b, .notion-collection.collection-9bf2f949412f490189c0bc3afdea09f9 .notion-collection-gallery > .notion-collection-card:first-child .notion-property.notion-property__text.property-546e703b {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
 }
 .notion-collection .notion-collection-gallery {
   border-top: none;
@@ -167,14 +269,102 @@ h3 .notion-semantic-string {
 
 /* Callouts */
 .notion-callout {
-  border-radius: var(--box-radius) !important;
-  border-width: 3px !important;
+  border-radius: var(--button-radius) !important;
   width: auto !important;
+  position: relative;
+  padding: 0px !important;
+  display: block !important;
+  box-shadow: var(--boxshadow-default);
+  background-color: var(--button-color);
+  transform: scale(1);
+  transition: transform 0.2s ease-in-out;
+  margin: 15px auto 5px 0px !important;
+  --iconPadding: 15px;
+  --paddingHeight: 10px;
+}
+.notion-callout.border {
+  border: solid 3px white !important;
+}
+.notion-callout:hover {
+  transform: scale(1.02);
+}
+.notion-callout .notion-callout__icon {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: var(--paddingHeight) var(--iconPadding);
+  z-index: 1;
+}
+.notion-callout .notion-callout__content {
+  margin: 0px !important;
+  position: relative;
+  z-index: 2;
+}
+.notion-callout .notion-callout__content .notion-semantic-string span, .notion-callout .notion-callout__content .notion-semantic-string span a {
+  display: block;
+  border: none;
+  color: var(--color-text-default-ondark);
+  opacity: 1;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.notion-callout .notion-callout__content .notion-semantic-string span a {
+  padding: var(--paddingHeight) 30px;
+  padding-left: calc((var(--iconPadding) * 2) + 1.3em);
+  border-radius: var(--button-radius);
 }
 
 /* Page COntent */
+.super-content.max-width {
+  max-width: var(--contentMaxWidth) !important;
+}
+
+.notion-header {
+  padding-left: var(--padding-safe-area-left);
+  padding-right: var(--padding-safe-area-right);
+  position: relative;
+}
+.notion-header .notion-header__cover {
+  max-height: unset !important;
+}
+.notion-header .notion-header__cover.no-cover {
+  height: calc(var(--navHeight) + 20px) !important;
+}
+.notion-header .notion-header__cover.has-cover {
+  height: 50vw !important;
+  --newRadius: calc(var(--box-radius) * 2);
+  border-radius: 0px 0px var(--newRadius) var(--newRadius) !important;
+}
+.notion-header .notion-header__content .notion-header__title {
+  font-size: 58px !important;
+  font-weight: 100 !important;
+  text-transform: uppercase;
+  font-family: "Montserrat Light", sans-serif;
+  line-height: 1.1em !important;
+}
+.notion-header .notion-header__content.has-cover.no-icon {
+  max-width: unset !important;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding: 0px;
+  padding-left: calc(var(--padding-safe-area-left) + 50px);
+  padding-right: calc(var(--padding-safe-area-right) + 50px);
+  padding-bottom: 20px;
+  display: block;
+}
+.notion-header .notion-header__content.has-cover.no-icon .notion-header__title {
+  color: var(--color-text-default-ondark);
+  text-shadow: var(--text-shadow-default);
+}
+
 /* Embeds */
-.notion-embed.notion-maps .notion-embed__content iframe {
+.notion-embed .notion-embed__content iframe {
   border-radius: 20px;
-  box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--boxshadow-default);
+}
+
+/* Divider */
+.notion-divider {
+  border-bottom: none !important;
 }/*# sourceMappingURL=sitestyle-block.css.map */
