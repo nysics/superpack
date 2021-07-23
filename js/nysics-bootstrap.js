@@ -10,9 +10,9 @@ class nysicsbootstrap {
     }
 
     createNav() {
+        console.log('begin navbar')
         //var navContainer = $('<div class="n-navbar"></div>');
 
-        console.log('Begin Navbar');
         // Create nav container
         var navContainer = document.createElement('div');
             navContainer.classList.add('n-navbar');
@@ -33,8 +33,6 @@ class nysicsbootstrap {
         //Format Title
         (() => {
             var siteNAMEcount = siteNAME.split(" ");
-            console.log('Start name parse')
-            console.log(siteNAMEcount);
 
             var siteNameRevised = "";
             siteNAMEcount.forEach((i, x) => {
@@ -49,7 +47,6 @@ class nysicsbootstrap {
                 else {
                     siteNameRevised += ' ';
                 }
-                console.log(i);
             });
             /*for (var i = 1; i < siteNAMEcount.length; i++) {
                 /*if (i == siteNAMEcountlength/2) {
@@ -82,9 +79,21 @@ class nysicsbootstrap {
             navSiteInfoA.setAttribute('class', 'n-navbar__siteinfolink notion-link link');
             navSiteInfoA.append(navSiteInfo);
         
+
+
         // Divider
         var navDivider = document.createElement('div');
             navDivider.classList.add('n-navbar__divider');
+
+        
+        // Search
+        //var navSearch = document.getElementsByClassName('notion-navbar__search')[0];
+        //$('.notion-navbar__search').appendTo(navDivider);
+        //
+        // TODO: GET SEARCH WORKING
+        //
+            //navDivider.appendChild(navSearch);
+
 
         // LOGIC FOR ADDING LINKS
 
@@ -127,15 +136,14 @@ class nysicsbootstrap {
     }
 
     firstInit() {
-        window.onload = (function() {
+        console.log('firstInit')
+        document.addEventListener('DOMContentLoaded', (event) => {
             this.createNav();
-        }).bind(this)
+        })
     }
 
     equip = {
         navLinks: (l) => {
-            console.log('wow')
-            console.log(this.config.navbar.links)
             l.forEach(element => {
                 this.config.navbar.links.push(element);
             });
@@ -143,26 +151,30 @@ class nysicsbootstrap {
     }
 
     constructor() {
-        //first run!
-        this.firstInit();
 
         //var that = this;
         //Add Jquery
-        /*window.onload = function() {
+        /*var init = (() => {
+            console.log('init');
+            this.firstInit();
+        }).bind(this);
+        window.onload = function() {
             if (window.jQuery) {  
                 return;
             } else {
                 var script = document.createElement("SCRIPT");
-                script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
+                script.src = 'https://code.jquery.com/jquery-3.5.1.min.js';
                 script.type = 'text/javascript';
                 script.onload = function() {
                     var $ = window.jQuery;
-                    that.firstInit();
-                };
+                    init();
+                }
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
         }*/
         console.log('running!')
+        //first run!
+        this.firstInit();
 
         this.config.firstLoad = false;
     }

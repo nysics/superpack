@@ -141,6 +141,18 @@ h3 .notion-semantic-string{
         flex-grow: 2;
     }
 
+    .notion-navbar__search {
+        position: unset !important;
+        top: unset;
+        bottom: unset;
+        z-index: 2 !important;
+        cursor: default;
+
+        &:hover svg {
+            transform: scale(1.1);
+        }
+    }
+
     .n-navbar__siteinfo {
         display: flex;
         flex-flow: row;
@@ -210,7 +222,7 @@ h3 .notion-semantic-string{
 
         .notion-collection-gallery {
 
-            grid-template-rows: 50vw auto !important;
+            grid-template-rows: 45vw auto !important;
             grid-template-columns: repeat(4, 1fr) !important;
             
             .notion-collection-card {
@@ -249,7 +261,7 @@ h3 .notion-semantic-string{
                 justify-self: center;
                 align-self: center;
                 grid-column: 1/-1;
-                height: 50vw;
+                height: 100%;
                 --newRadius: calc(var(--box-radius) * 2);
                 border-radius: 0px 0px var(--newRadius) var(--newRadius) !important;
 
@@ -386,7 +398,7 @@ h3 .notion-semantic-string{
         }
 
         &.has-cover {
-            height:50vw !important;
+            height:45vw !important;
 
             --newRadius: calc(var(--box-radius) * 2);
             border-radius: 0px 0px var(--newRadius) var(--newRadius) !important;
