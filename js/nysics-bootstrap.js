@@ -135,6 +135,10 @@ class nysicsbootstrap {
         document.getElementsByTagName('body')[0].prepend(navContainer);
     }
 
+    pageInit() {
+        
+    }
+
     firstInit() {
         console.log('firstInit')
         document.addEventListener('DOMContentLoaded', (event) => {

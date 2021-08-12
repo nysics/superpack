@@ -21,7 +21,7 @@
   --color-bg-purple: rgb(234, 228, 242) !important;
   --color-bg-pink: rgb(244, 223, 235) !important;
   --color-bg-red: rgb(251, 228, 228) !important;
-  --color-bg-gray-light: rgba(235, 236, 237, 0.3) !important;
+  --color-bg-gray-light: rgba(235, 236, 237, 0.8) !important;
   --color-bg-brown-light: rgba(233, 229, 227, 0.3) !important;
   --color-bg-orange-light: rgba(250, 235, 221, 0.3) !important;
   --color-bg-yellow-light: rgba(251, 243, 219, 0.3) !important;
@@ -260,12 +260,25 @@ h3 .notion-semantic-string {
 .notion-collection .notion-collection-gallery .notion-collection-card .notion-property__title {
   position: relative;
   z-index: 2;
+  display: block;
 }
 .notion-collection .notion-collection-gallery .notion-collection-card .notion-property__title .notion-semantic-string {
   overflow: visible !important;
   color: var(--color-text-default-ondark);
   text-shadow: var(--text-shadow-default);
   font-weight: bold;
+  display: block;
+}
+.notion-collection .notion-collection-gallery .notion-collection-card .notion-property__title .notion-property__title__icon-wrapper {
+  display: block;
+}
+.notion-collection .notion-collection-gallery .notion-collection-card .notion-property__title .notion-property__title__icon-wrapper picture {
+  height: 40px !important;
+  width: 40px !important;
+}
+.notion-collection .notion-collection-gallery .notion-collection-card .notion-property__title .notion-property__title__icon-wrapper .notion-icon.text {
+  max-height: 20px !important;
+  max-width: 20px !important;
 }
 .notion-collection .notion-collection-gallery .notion-collection-card .notion-collection-card__content {
   position: relative;
@@ -319,7 +332,6 @@ article.notion-root > .notion-collection:first-child .notion-collection-gallery 
   padding: 0px;
   text-shadow: var(--text-shadow-default);
   overflow: auto;
-  display: block;
 }
 article.notion-root > .notion-collection:first-child .notion-collection-gallery .notion-collection-card .notion-property__title .notion-semantic-string, .notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-property__title .notion-semantic-string {
   font-family: "Montserrat", sans-serif !important;
@@ -327,6 +339,9 @@ article.notion-root > .notion-collection:first-child .notion-collection-gallery 
   font-size: 2vw !important;
   padding: 1vw 2vw;
   white-space: pre-wrap !important;
+}
+article.notion-root > .notion-collection:first-child .notion-collection-gallery .notion-collection-card .notion-property__title .notion-icon.notion-icon__page, .notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-property__title .notion-icon.notion-icon__page {
+  display: none;
 }
 article.notion-root > .notion-collection:first-child .notion-collection-gallery .notion-collection-card .notion-collection-card__cover div img, .notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-collection-card__cover div img {
   opacity: 0.7;
@@ -336,6 +351,7 @@ article.notion-root > .notion-collection:first-child .notion-collection-gallery 
   align-self: center;
   grid-column: 1/-1;
   height: 100%;
+  border-top: none !important;
   --newRadius: calc(var(--box-radius) * 2);
   border-radius: 0px 0px var(--newRadius) var(--newRadius) !important;
 }
@@ -344,12 +360,16 @@ article.notion-root > .notion-collection:first-child .notion-collection-gallery 
 }
 article.notion-root > .notion-collection:first-child .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title .notion-semantic-string, .notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title .notion-semantic-string {
   font-size: 4em !important;
+  line-height: 1.2em;
 }
 article.notion-root > .notion-collection:first-child .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__cover div img, .notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__cover div img {
   opacity: 1;
 }
 article.notion-root > .notion-collection:first-child .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__content, .notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__content {
   position: relative;
+}
+article.notion-root > .notion-collection:first-child .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__property, .notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-collection-card__property {
+  min-height: unset !important;
 }
 article.notion-root > .notion-collection:first-child .notion-collection-gallery > .notion-collection-card:first-child .notion-property.notion-property__text.property-546e703b, .notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-property.notion-property__text.property-546e703b {
   position: absolute;
@@ -358,7 +378,7 @@ article.notion-root > .notion-collection:first-child .notion-collection-gallery 
 }
 
 /* Callouts */
-.notion-callout {
+.notion-callout:not(.bg-gray-light):not(.bg-brown-light):not(.bg-orange-light):not(.bg-yellow-light):not(.bg-green-light):not(.bg-blue-light):not(.bg-purple-light):not(.bg-pink-light):not(.bg-red-light) {
   border-radius: var(--button-radius) !important;
   width: auto !important;
   position: relative;
@@ -372,25 +392,25 @@ article.notion-root > .notion-collection:first-child .notion-collection-gallery 
   --iconPadding: 15px;
   --paddingHeight: 10px;
 }
-.notion-callout.border {
+.notion-callout:not(.bg-gray-light):not(.bg-brown-light):not(.bg-orange-light):not(.bg-yellow-light):not(.bg-green-light):not(.bg-blue-light):not(.bg-purple-light):not(.bg-pink-light):not(.bg-red-light).border {
   border: solid 3px white !important;
 }
-.notion-callout:hover {
+.notion-callout:not(.bg-gray-light):not(.bg-brown-light):not(.bg-orange-light):not(.bg-yellow-light):not(.bg-green-light):not(.bg-blue-light):not(.bg-purple-light):not(.bg-pink-light):not(.bg-red-light):hover {
   transform: scale(1.02);
 }
-.notion-callout .notion-callout__icon {
+.notion-callout:not(.bg-gray-light):not(.bg-brown-light):not(.bg-orange-light):not(.bg-yellow-light):not(.bg-green-light):not(.bg-blue-light):not(.bg-purple-light):not(.bg-pink-light):not(.bg-red-light) .notion-callout__icon {
   position: absolute;
   top: 0px;
   left: 0px;
   padding: var(--paddingHeight) var(--iconPadding);
   z-index: 1;
 }
-.notion-callout .notion-callout__content {
+.notion-callout:not(.bg-gray-light):not(.bg-brown-light):not(.bg-orange-light):not(.bg-yellow-light):not(.bg-green-light):not(.bg-blue-light):not(.bg-purple-light):not(.bg-pink-light):not(.bg-red-light) .notion-callout__content {
   margin: 0px !important;
   position: relative;
   z-index: 2;
 }
-.notion-callout .notion-callout__content .notion-semantic-string span, .notion-callout .notion-callout__content .notion-semantic-string span a {
+.notion-callout:not(.bg-gray-light):not(.bg-brown-light):not(.bg-orange-light):not(.bg-yellow-light):not(.bg-green-light):not(.bg-blue-light):not(.bg-purple-light):not(.bg-pink-light):not(.bg-red-light) .notion-callout__content .notion-semantic-string span, .notion-callout:not(.bg-gray-light):not(.bg-brown-light):not(.bg-orange-light):not(.bg-yellow-light):not(.bg-green-light):not(.bg-blue-light):not(.bg-purple-light):not(.bg-pink-light):not(.bg-red-light) .notion-callout__content .notion-semantic-string span a {
   display: block;
   border: none;
   color: var(--color-text-default-ondark);
@@ -398,10 +418,242 @@ article.notion-root > .notion-collection:first-child .notion-collection-gallery 
   text-transform: uppercase;
   font-weight: bold;
 }
-.notion-callout .notion-callout__content .notion-semantic-string span a {
+.notion-callout:not(.bg-gray-light):not(.bg-brown-light):not(.bg-orange-light):not(.bg-yellow-light):not(.bg-green-light):not(.bg-blue-light):not(.bg-purple-light):not(.bg-pink-light):not(.bg-red-light) .notion-callout__content .notion-semantic-string span a {
   padding: var(--paddingHeight) 30px;
   padding-left: calc((var(--iconPadding) * 2) + 1.3em);
   border-radius: var(--button-radius);
+}
+
+.notion-callout.bg-gray-light,
+.notion-callout.bg-brown-light,
+.notion-callout.bg-orange-light,
+.notion-callout.bg-yellow-light,
+.notion-callout.bg-green-light,
+.notion-callout.bg-blue-light,
+.notion-callout.bg-purple-light,
+.notion-callout.bg-pink-light,
+.notion-callout.bg-red-light {
+  position: relative;
+  padding: 0px;
+  border-radius: var(--box-radius);
+  box-shadow: var(--boxshadow-default);
+  border: solid 3px white !important;
+  --imageFilter: brightness(70%) contrast(80%);
+  --imageOpacity: .8;
+}
+.notion-callout.bg-gray-light > .notion-callout__icon,
+.notion-callout.bg-brown-light > .notion-callout__icon,
+.notion-callout.bg-orange-light > .notion-callout__icon,
+.notion-callout.bg-yellow-light > .notion-callout__icon,
+.notion-callout.bg-green-light > .notion-callout__icon,
+.notion-callout.bg-blue-light > .notion-callout__icon,
+.notion-callout.bg-purple-light > .notion-callout__icon,
+.notion-callout.bg-pink-light > .notion-callout__icon,
+.notion-callout.bg-red-light > .notion-callout__icon {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.notion-callout.bg-gray-light > .notion-callout__icon .notion-icon.text,
+.notion-callout.bg-brown-light > .notion-callout__icon .notion-icon.text,
+.notion-callout.bg-orange-light > .notion-callout__icon .notion-icon.text,
+.notion-callout.bg-yellow-light > .notion-callout__icon .notion-icon.text,
+.notion-callout.bg-green-light > .notion-callout__icon .notion-icon.text,
+.notion-callout.bg-blue-light > .notion-callout__icon .notion-icon.text,
+.notion-callout.bg-purple-light > .notion-callout__icon .notion-icon.text,
+.notion-callout.bg-pink-light > .notion-callout__icon .notion-icon.text,
+.notion-callout.bg-red-light > .notion-callout__icon .notion-icon.text {
+  display: none;
+}
+.notion-callout.bg-gray-light > .notion-callout__icon > div,
+.notion-callout.bg-brown-light > .notion-callout__icon > div,
+.notion-callout.bg-orange-light > .notion-callout__icon > div,
+.notion-callout.bg-yellow-light > .notion-callout__icon > div,
+.notion-callout.bg-green-light > .notion-callout__icon > div,
+.notion-callout.bg-blue-light > .notion-callout__icon > div,
+.notion-callout.bg-purple-light > .notion-callout__icon > div,
+.notion-callout.bg-pink-light > .notion-callout__icon > div,
+.notion-callout.bg-red-light > .notion-callout__icon > div {
+  height: 100% !important;
+  width: 100% !important;
+}
+.notion-callout.bg-gray-light > .notion-callout__icon img,
+.notion-callout.bg-brown-light > .notion-callout__icon img,
+.notion-callout.bg-orange-light > .notion-callout__icon img,
+.notion-callout.bg-yellow-light > .notion-callout__icon img,
+.notion-callout.bg-green-light > .notion-callout__icon img,
+.notion-callout.bg-blue-light > .notion-callout__icon img,
+.notion-callout.bg-purple-light > .notion-callout__icon img,
+.notion-callout.bg-pink-light > .notion-callout__icon img,
+.notion-callout.bg-red-light > .notion-callout__icon img {
+  -o-object-fit: cover !important;
+     object-fit: cover !important;
+  opacity: var(--imageOpacity);
+  filter: var(--imageFilter);
+}
+.notion-callout.bg-gray-light > .notion-callout__content,
+.notion-callout.bg-brown-light > .notion-callout__content,
+.notion-callout.bg-orange-light > .notion-callout__content,
+.notion-callout.bg-yellow-light > .notion-callout__content,
+.notion-callout.bg-green-light > .notion-callout__content,
+.notion-callout.bg-blue-light > .notion-callout__content,
+.notion-callout.bg-purple-light > .notion-callout__content,
+.notion-callout.bg-pink-light > .notion-callout__content,
+.notion-callout.bg-red-light > .notion-callout__content {
+  position: relative;
+  margin: 0px;
+  padding: 20px;
+  width: 100%;
+  z-index: 3;
+}
+.notion-callout.bg-gray-light > .notion-callout__content > h1, .notion-callout.bg-gray-light > .notion-callout__content > div,
+.notion-callout.bg-brown-light > .notion-callout__content > h1,
+.notion-callout.bg-brown-light > .notion-callout__content > div,
+.notion-callout.bg-orange-light > .notion-callout__content > h1,
+.notion-callout.bg-orange-light > .notion-callout__content > div,
+.notion-callout.bg-yellow-light > .notion-callout__content > h1,
+.notion-callout.bg-yellow-light > .notion-callout__content > div,
+.notion-callout.bg-green-light > .notion-callout__content > h1,
+.notion-callout.bg-green-light > .notion-callout__content > div,
+.notion-callout.bg-blue-light > .notion-callout__content > h1,
+.notion-callout.bg-blue-light > .notion-callout__content > div,
+.notion-callout.bg-purple-light > .notion-callout__content > h1,
+.notion-callout.bg-purple-light > .notion-callout__content > div,
+.notion-callout.bg-pink-light > .notion-callout__content > h1,
+.notion-callout.bg-pink-light > .notion-callout__content > div,
+.notion-callout.bg-red-light > .notion-callout__content > h1,
+.notion-callout.bg-red-light > .notion-callout__content > div {
+  margin: auto !important;
+}
+.notion-callout.bg-gray-light > .notion-callout__content .notion-semantic-string,
+.notion-callout.bg-brown-light > .notion-callout__content .notion-semantic-string,
+.notion-callout.bg-orange-light > .notion-callout__content .notion-semantic-string,
+.notion-callout.bg-yellow-light > .notion-callout__content .notion-semantic-string,
+.notion-callout.bg-green-light > .notion-callout__content .notion-semantic-string,
+.notion-callout.bg-blue-light > .notion-callout__content .notion-semantic-string,
+.notion-callout.bg-purple-light > .notion-callout__content .notion-semantic-string,
+.notion-callout.bg-pink-light > .notion-callout__content .notion-semantic-string,
+.notion-callout.bg-red-light > .notion-callout__content .notion-semantic-string {
+  color: var(--color-text-default-ondark);
+}
+.notion-callout.bg-gray-light > .notion-callout__content > .notion-semantic-string:first-child,
+.notion-callout.bg-brown-light > .notion-callout__content > .notion-semantic-string:first-child,
+.notion-callout.bg-orange-light > .notion-callout__content > .notion-semantic-string:first-child,
+.notion-callout.bg-yellow-light > .notion-callout__content > .notion-semantic-string:first-child,
+.notion-callout.bg-green-light > .notion-callout__content > .notion-semantic-string:first-child,
+.notion-callout.bg-blue-light > .notion-callout__content > .notion-semantic-string:first-child,
+.notion-callout.bg-purple-light > .notion-callout__content > .notion-semantic-string:first-child,
+.notion-callout.bg-pink-light > .notion-callout__content > .notion-semantic-string:first-child,
+.notion-callout.bg-red-light > .notion-callout__content > .notion-semantic-string:first-child {
+  display: none;
+}
+.notion-callout.bg-gray-light > .notion-callout__content > .notion-embed:nth-child(2),
+.notion-callout.bg-brown-light > .notion-callout__content > .notion-embed:nth-child(2),
+.notion-callout.bg-orange-light > .notion-callout__content > .notion-embed:nth-child(2),
+.notion-callout.bg-yellow-light > .notion-callout__content > .notion-embed:nth-child(2),
+.notion-callout.bg-green-light > .notion-callout__content > .notion-embed:nth-child(2),
+.notion-callout.bg-blue-light > .notion-callout__content > .notion-embed:nth-child(2),
+.notion-callout.bg-purple-light > .notion-callout__content > .notion-embed:nth-child(2),
+.notion-callout.bg-pink-light > .notion-callout__content > .notion-embed:nth-child(2),
+.notion-callout.bg-red-light > .notion-callout__content > .notion-embed:nth-child(2) {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  opacity: var(--imageOpacity);
+  filter: var(--imageFilter);
+  overflow: hidden;
+  z-index: -1;
+}
+.notion-callout.bg-gray-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content,
+.notion-callout.bg-brown-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content,
+.notion-callout.bg-orange-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content,
+.notion-callout.bg-yellow-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content,
+.notion-callout.bg-green-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content,
+.notion-callout.bg-blue-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content,
+.notion-callout.bg-purple-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content,
+.notion-callout.bg-pink-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content,
+.notion-callout.bg-red-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content {
+  height: 100%;
+}
+.notion-callout.bg-gray-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content > div,
+.notion-callout.bg-brown-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content > div,
+.notion-callout.bg-orange-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content > div,
+.notion-callout.bg-yellow-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content > div,
+.notion-callout.bg-green-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content > div,
+.notion-callout.bg-blue-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content > div,
+.notion-callout.bg-purple-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content > div,
+.notion-callout.bg-pink-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content > div,
+.notion-callout.bg-red-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content > div {
+  padding-bottom: 0px !important;
+}
+.notion-callout.bg-gray-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe,
+.notion-callout.bg-brown-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe,
+.notion-callout.bg-orange-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe,
+.notion-callout.bg-yellow-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe,
+.notion-callout.bg-green-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe,
+.notion-callout.bg-blue-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe,
+.notion-callout.bg-purple-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe,
+.notion-callout.bg-pink-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe,
+.notion-callout.bg-red-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe {
+  border-radius: 0px;
+  height: calc(100% + 120px);
+  position: relative;
+  top: -60px;
+  z-index: -1;
+}
+.notion-callout.bg-gray-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe:before,
+.notion-callout.bg-brown-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe:before,
+.notion-callout.bg-orange-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe:before,
+.notion-callout.bg-yellow-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe:before,
+.notion-callout.bg-green-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe:before,
+.notion-callout.bg-blue-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe:before,
+.notion-callout.bg-purple-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe:before,
+.notion-callout.bg-pink-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe:before,
+.notion-callout.bg-red-light > .notion-callout__content > .notion-embed:nth-child(2) .notion-embed__content iframe:before {
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 2;
+}
+.notion-callout.bg-gray-light > .notion-callout__content > .notion-heading:nth-child(2), .notion-callout.bg-gray-light > .notion-callout__content .notion-heading:nth-child(3),
+.notion-callout.bg-brown-light > .notion-callout__content > .notion-heading:nth-child(2),
+.notion-callout.bg-brown-light > .notion-callout__content .notion-heading:nth-child(3),
+.notion-callout.bg-orange-light > .notion-callout__content > .notion-heading:nth-child(2),
+.notion-callout.bg-orange-light > .notion-callout__content .notion-heading:nth-child(3),
+.notion-callout.bg-yellow-light > .notion-callout__content > .notion-heading:nth-child(2),
+.notion-callout.bg-yellow-light > .notion-callout__content .notion-heading:nth-child(3),
+.notion-callout.bg-green-light > .notion-callout__content > .notion-heading:nth-child(2),
+.notion-callout.bg-green-light > .notion-callout__content .notion-heading:nth-child(3),
+.notion-callout.bg-blue-light > .notion-callout__content > .notion-heading:nth-child(2),
+.notion-callout.bg-blue-light > .notion-callout__content .notion-heading:nth-child(3),
+.notion-callout.bg-purple-light > .notion-callout__content > .notion-heading:nth-child(2),
+.notion-callout.bg-purple-light > .notion-callout__content .notion-heading:nth-child(3),
+.notion-callout.bg-pink-light > .notion-callout__content > .notion-heading:nth-child(2),
+.notion-callout.bg-pink-light > .notion-callout__content .notion-heading:nth-child(3),
+.notion-callout.bg-red-light > .notion-callout__content > .notion-heading:nth-child(2),
+.notion-callout.bg-red-light > .notion-callout__content .notion-heading:nth-child(3) {
+  margin-top: 0px;
+}
+.notion-callout.bg-gray-light > .notion-callout__content > .notion-callout,
+.notion-callout.bg-brown-light > .notion-callout__content > .notion-callout,
+.notion-callout.bg-orange-light > .notion-callout__content > .notion-callout,
+.notion-callout.bg-yellow-light > .notion-callout__content > .notion-callout,
+.notion-callout.bg-green-light > .notion-callout__content > .notion-callout,
+.notion-callout.bg-blue-light > .notion-callout__content > .notion-callout,
+.notion-callout.bg-purple-light > .notion-callout__content > .notion-callout,
+.notion-callout.bg-pink-light > .notion-callout__content > .notion-callout,
+.notion-callout.bg-red-light > .notion-callout__content > .notion-callout {
+  border: solid 1px red !important;
+  margin: auto !important;
 }
 
 /* Page Content */
@@ -456,6 +708,7 @@ article.notion-root > .notion-collection:first-child .notion-collection-gallery 
 .notion-embed .notion-embed__content iframe {
   border-radius: 20px;
   box-shadow: var(--boxshadow-default);
+  background-color: transparent !important;
 }
 
 /* Divider */
@@ -463,12 +716,33 @@ article.notion-root > .notion-collection:first-child .notion-collection-gallery 
   border-bottom: none !important;
 }
 
+/* Links, Pages, Etc */
+.notion-root > .notion-link.notion-page {
+  width: auto;
+  min-width: 100px;
+}
+.notion-root > .notion-link.notion-page > div {
+  padding: 10px 20px;
+  border-radius: var(--button-radius);
+  border: solid 3px white;
+  background-color: var(--button-color);
+  box-shadow: var(--boxshadow-default);
+}
+.notion-root > .notion-link.notion-page > div .notion-page__title {
+  overflow: auto;
+  text-overflow: unset;
+}
+.notion-root > .notion-link.notion-page > div .notion-semantic-string {
+  color: var(--color-text-default-ondark);
+  white-space: pre-wrap;
+}
+
 @media (max-width: 546px) {
   :root {
     --navHeight: 70px;
     --box-radius: 20px;
-    --padding-safe-area-left: calc(env(safe-area-inset-left) + 10px);
-    --padding-safe-area-right: calc(env(safe-area-inset-right) + 10px);
+    --padding-safe-area-left: calc(env(safe-area-inset-left) + 24px);
+    --padding-safe-area-right: calc(env(safe-area-inset-right) + 24px);
   }
 
   /* Navbar */
@@ -479,22 +753,42 @@ article.notion-root > .notion-collection:first-child .notion-collection-gallery 
     padding-top: unset;
     padding-bottom: var(--screenMargin);
   }
+  .n-navbar .n-navbar__content {
+    flex-wrap: wrap !important;
+  }
   .n-navbar .n-navbar__siteinfo img {
     width: calc(var(--navHeight) - var(--padding-LR));
     -o-object-position: left center;
        object-position: left center;
   }
+  .n-navbar .n-navbar__navlinks {
+    order: 10;
+    width: 100%;
+  }
 
   /* Collections */
+  article.notion-root > .notion-collection:first-child, .notion-collection.hero {
+    width: 100vw;
+  }
   article.notion-root > .notion-collection:first-child .notion-collection-gallery, .notion-collection.hero .notion-collection-gallery {
     grid-template-rows: 45vh auto !important;
     grid-template-columns: repeat(1, 1fr) !important;
   }
   article.notion-root > .notion-collection:first-child .notion-collection-gallery .notion-collection-card, .notion-collection.hero .notion-collection-gallery .notion-collection-card {
     height: 15vh;
+    width: calc(100vw - var(--padding-safe-area-left) - var(--padding-safe-area-right));
+    justify-self: center;
   }
   article.notion-root > .notion-collection:first-child .notion-collection-gallery .notion-collection-card .notion-property__title .notion-semantic-string, .notion-collection.hero .notion-collection-gallery .notion-collection-card .notion-property__title .notion-semantic-string {
     font-size: 3vh !important;
+  }
+  article.notion-root > .notion-collection:first-child .notion-collection-gallery > .notion-collection-card:first-child, .notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child {
+    width: 100vw;
+    align-self: center;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px !important;
   }
   article.notion-root > .notion-collection:first-child .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title, .notion-collection.hero .notion-collection-gallery > .notion-collection-card:first-child .notion-property__title {
     margin: 20px 10px;
