@@ -6,24 +6,27 @@
 }
 
 /* Navbar */
-.n-navbar {
+.n-navbar, .super-navbar {
   --padding-LR: 10px;
-  top: unset;
-  bottom: calc(0px + env(safe-area-inset-bottom));
-  padding-top: unset;
-  padding-bottom: var(--screenMargin);
+  top: unset !important;
+  bottom: calc(0px + env(safe-area-inset-bottom)) !important;
+  padding-top: unset !important;
+  padding-bottom: var(--screenMargin) !important;
 }
-.n-navbar .n-navbar__content {
+.n-navbar .n-navbar__content, .super-navbar .n-navbar__content {
   flex-wrap: wrap !important;
 }
-.n-navbar .n-navbar__siteinfo img {
-  width: calc(var(--navHeight) - var(--padding-LR));
+.n-navbar .n-navbar__siteinfo img, .n-navbar .super-navbar__logo-image img, .super-navbar .n-navbar__siteinfo img, .super-navbar .super-navbar__logo-image img {
+  width: calc(var(--navHeight) - var(--padding-LR)) !important;
   -o-object-position: left center;
      object-position: left center;
 }
-.n-navbar .n-navbar__navlinks {
+.n-navbar .n-navbar__navlinks, .super-navbar .n-navbar__navlinks {
   order: 10;
   width: 100%;
+}
+.n-navbar .super-navbar__menu-wrapper, .super-navbar .super-navbar__menu-wrapper {
+  align-items: flex-end;
 }
 
 /* Collections */

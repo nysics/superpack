@@ -10,6 +10,10 @@ class nysicsbootstrap {
     }
 
     createNav() {
+        if (document.getElementsByClassName('super-navbar').length >= 1) {
+            console.log('Super Navbar is here!')
+            return;
+        }
         console.log('begin navbar')
         //var navContainer = $('<div class="n-navbar"></div>');
 
@@ -136,13 +140,86 @@ class nysicsbootstrap {
     }
 
     pageInit() {
-        
+        console.log('PageInit');
+        $('body').removeClass('n-contains-hero n-full-width');
+
+        $('body').has('div > article.notion-root.full-width').addClass('n-full-width')
+
+        $('body').has('article > .notion-collection').addClass('n-contains-hero');
+        //Turn first callouts into headers
+        if ($('article > .notion-callout:first-child').length) {
+            var callout = $('article > .notion-callout:first-child');
+            $('body').addClass('n-contains-hero');
+            
+            $(callout).addClass('n-callout-hero');
+
+            //Check to see if there are 4 more callouts
+            var searchArea = null;
+
+            //Check to see if next set is column
+            if ($(callout).next().hasClass('notion-column-list')) {
+
+                searchArea = $(callout).next();
+                if ($(searchArea).has('.notion-column > .notion-callout').length) {
+                    $(searchArea).addClass('n-callout-container');
+                }
+            }
+            else {
+
+            }
+        }
+
+        // Find Buttons
+        var ctabuttons = $('.notion-callout:not(.bg-gray-light, .bg-brown-light, .bg-orange-light, .bg-yellow-light, .bg-green-light, .bg-blue-light, .bg-purple-light, .bg-pink-light, .bg-red-light)').each(
+            function() {
+            $(this).addClass('n-cta-button');
+
+            if($(this).find('a.notion-link').length !== 0) { $(this).addClass('contains-link') }
+        });
+
+        //Add links to Callouts
+        $('.notion-callout').has('> .notion-callout__content > .notion-semantic-string a').addClass('contains-link');
+
+        //Add images to Callouts
+        $('.notion-callout').has('.notion-image').addClass('contains-image');
+        $('.notion-callout').has('.notion-callout__icon img').addClass('contains-image');
+    }
+
+    startMutation() {
+        console.log('Starting Mutation')
+        // Select the node that will be observed for mutations
+        const targetNode = document.querySelector('#__next > div');
+
+        // Options for the observer (which mutations to observe)
+        const config = { attributes: true, childList: false, subtree: false };
+
+        // Callback function to execute when mutations are observed
+        const callback = function(mutationsList, observer) {
+            //alert('wow')
+            if (!this.config.firstLoad) {
+                console.log('Mutated')
+                this.pageInit();
+            }
+            /*setTimeout(function(){
+                console.log('Timeout!')
+            }.bind(this),100);*/
+        }.bind(this);
+
+        // Create an observer instance linked to the callback function
+        const observer = new MutationObserver(callback);
+
+        // Start observing the target node for configured mutations
+        observer.observe(targetNode, config);
     }
 
     firstInit() {
         console.log('firstInit')
         document.addEventListener('DOMContentLoaded', (event) => {
             this.createNav();
+            this.pageInit();
+            this.startMutation();
+
+            this.config.firstLoad = false;
         })
     }
 
@@ -179,6 +256,7 @@ class nysicsbootstrap {
         console.log('running!')
         //first run!
         this.firstInit();
+        console.log('end first init')
 
         this.config.firstLoad = false;
     }
