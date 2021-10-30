@@ -86,6 +86,10 @@ html, html .notion-semantic-string, body, body .notion-semantic-string {
   font-family: "Open Sans", sans-serif;
 }
 
+.notion-toggle.bg-purple {
+  display: none;
+}
+
 body {
   background: linear-gradient(to left bottom, #d6f7ff, white) !important;
   background-attachment: fixed;
