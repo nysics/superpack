@@ -279,9 +279,18 @@ h3 .notion-semantic-string{
 }
 
 /* Hero */
+.n-callout-children {
+    align-items: stretch !important;
+}
 .n-callout-children .notion-callout:not(.n-cta-button) {
+    height: 100%;
     .notion-callout__content > .notion-semantic-string, .notion-callout__icon {
         display: none;
+    }
+
+    h1 {
+    margin-top:0px;
+    margin-bottom: 0px;
     }
 }
 .n-callout-children .notion-column > .notion-collection .notion-collection-card {
@@ -326,3 +335,10 @@ h3 .notion-semantic-string{
 @import './sitestyle-block-mobile.scss';
 }
 //}
+
+
+#block-5658a1419424488386e80e82704d2687, #block-f41c53abb1154e169eed9e02afcfb795 {
+    text-shadow: 0px 3px 25px rgba(255, 255, 255, .8);
+    color: white;
+    text-align: center;
+}
