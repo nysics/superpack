@@ -314,6 +314,9 @@ h3 .notion-semantic-string {
   display: flex;
   align-items: flex-end;
 }
+.n-callout-children .notion-column .notion-picture {
+  min-height: 12vw;
+}
 
 .n-callout-children .notion-callout:not(.n-cta-button) {
   align-self: stretch;
@@ -351,6 +354,24 @@ h3 .notion-semantic-string {
 }
 .n-callout-children .notion-callout:not(.n-cta-button):hover .notion-callout__bg::before {
   opacity: 0.1;
+}
+
+.n-callout-children .notion-image.page-width {
+  border-radius: 70px;
+  box-shadow: var(--boxshadow-default);
+  border: solid 2px rgba(255, 255, 255, 0.5);
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+.n-callout-children .notion-image.page-width img, .n-callout-children .notion-image.page-width picture, .n-callout-children .notion-image.page-width a {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  transition: all 0.5s ease-in-out;
+}
+.n-callout-children .notion-image.page-width:hover img {
+  transform: scale(1.05);
 }
 
 .n-callout-children .notion-column > .notion-collection .notion-collection-card {
