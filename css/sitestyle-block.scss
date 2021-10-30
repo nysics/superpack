@@ -281,9 +281,19 @@ h3 .notion-semantic-string{
 /* Hero */
 .n-callout-children {
     align-items: stretch !important;
+
+    .notion-column {
+        align-items: stretch;
+
+        & > a > div {
+            min-height:200px;
+            display: flex;
+            align-items: flex-end;
+        }
+    }
 }
 .n-callout-children .notion-callout:not(.n-cta-button) {
-    height: 100%;
+    align-self: stretch;
     .notion-callout__content > .notion-semantic-string, .notion-callout__icon {
         display: none;
     }
@@ -303,7 +313,9 @@ h3 .notion-semantic-string{
 
 /* CTA Buttons */
 .n-cta-button {
-    border: solid 3px var(--button-color);
+    border: solid 3px var(--button-color) !important;
+    border-radius: 50px !important;
+
 }
 
 /* Callouts */
@@ -340,5 +352,5 @@ h3 .notion-semantic-string{
 #block-5658a1419424488386e80e82704d2687, #block-f41c53abb1154e169eed9e02afcfb795 {
     text-shadow: 0px 3px 25px rgba(255, 255, 255, .8);
     color: white;
-    text-align: center;
+    //text-align: center;
 }
