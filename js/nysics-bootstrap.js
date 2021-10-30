@@ -141,14 +141,18 @@ class nysicsbootstrap {
 
     pageInit() {
         console.log('PageInit');
-        $('body').removeClass('n-contains-hero n-full-width');
 
-        $('body').has('div > article.notion-root.full-width').addClass('n-full-width')
+        $('body').removeClass('n-contains-hero n-full-width n-normal-width');
+
+        $('body').has('div > article.notion-root.full-width').addClass('n-full-width');
+        $('body').has('div > article.notion-root:not(.full-width)').addClass('n-normal-width');
 
         $('body').has('article > .notion-collection').addClass('n-contains-hero');
+
         //Turn first callouts into headers
         if ($('article > .notion-callout:first-child').length) {
             var callout = $('article > .notion-callout:first-child');
+
             $('body').addClass('n-contains-hero');
             
             $(callout).addClass('n-callout-hero');
@@ -160,14 +164,13 @@ class nysicsbootstrap {
             if ($(callout).next().hasClass('notion-column-list')) {
 
                 searchArea = $(callout).next();
+
                 if ($(searchArea).has('.notion-column > .notion-callout').length) {
-                    $(searchArea).addClass('n-callout-container');
+                    $(searchArea).addClass('n-callout-children');
                 }
             }
-            else {
-
-            }
         }
+
 
         // Find Buttons
         var ctabuttons = $('.notion-callout:not(.bg-gray-light, .bg-brown-light, .bg-orange-light, .bg-yellow-light, .bg-green-light, .bg-blue-light, .bg-purple-light, .bg-pink-light, .bg-red-light)').each(
@@ -178,11 +181,70 @@ class nysicsbootstrap {
         });
 
         //Add links to Callouts
-        $('.notion-callout').has('> .notion-callout__content > .notion-semantic-string a').addClass('contains-link');
+        $('.notion-callout').has('> .notion-callout__content > .notion-semantic-string a').each(function(index) {
+            $(this).addClass('contains-link');
+            var link = $(this).find('> .notion-callout__content > .notion-semantic-string a'); //Get link object
+            var linkHTML = $(link).html();
+            $(link).html("");
+            $(link).parent().append(linkHTML);
+            $(link).detach();
+            $(link).addClass('notion-callout-link-container')
+            $(this).parent().append(link);
+
+            $(link).append(this);
+
+        });
+
 
         //Add images to Callouts
-        $('.notion-callout').has('.notion-image').addClass('contains-image');
-        $('.notion-callout').has('.notion-callout__icon img').addClass('contains-image');
+        var calloutCreateBG = function(self) {
+            //TODO: add logic to determine if this is already here
+            var container = $('<div class="notion-callout__bg">');
+
+            $(self).append(container);
+
+            return container;
+        }
+        var calloutFixImage = function(self, type) {
+            $(self).addClass('contains-image');
+
+            var imageBGContainer = $('<div class="notion-callout__bg__' + type + '">');
+            var imageContainer =  $(calloutCreateBG(self)).append(imageBGContainer);
+
+            var image = null;
+
+            if (type == 'image-body') {
+                image = $(self).find('.notion-callout__content > .notion-image:nth-child(2)')[0];
+            }
+            else {
+                image = $(self).find('.notion-callout__icon img')[0];
+            }
+
+            $(image).detach();
+            $(imageBGContainer).append(image);
+
+        }
+        var calloutFixVideo = function(self) {
+            $(self).addClass('contains-embed');
+
+            var videoBGContainer = $('<div class="notion-callout__bg__embed">');
+            var videoContainer =  $(calloutCreateBG(self)).append(videoBGContainer);
+
+            var video = null;
+
+            video = $(self).find('.notion-callout__content > .notion-embed:nth-child(2)')[0];
+
+            $(video).detach();
+            $(videoBGContainer).append(video);
+
+        }
+
+        $('.notion-callout').each(function() {
+            $(this).has('.notion-callout__content > .notion-image:nth-child(2)').each(function() { calloutFixImage(this, 'image-body')});
+            $(this).has('.notion-callout__icon img').each(function() { calloutFixImage(this, 'image-icon')});
+            $(this).has('.notion-callout__content > .notion-embed:nth-child(2)').each(function() { calloutFixVideo(this)});
+        });
+        
     }
 
     startMutation() {
@@ -214,6 +276,11 @@ class nysicsbootstrap {
 
     firstInit() {
         console.log('firstInit')
+        //Add tag to HTML
+        var root = document.getElementsByTagName( 'html' ); 
+        root[0].setAttribute( 'class', 'modified' );
+        //This ensures any styling we do only applies if JavaScript works. If it doesn't, we deault to Super's style.
+
         document.addEventListener('DOMContentLoaded', (event) => {
             this.createNav();
             this.pageInit();
