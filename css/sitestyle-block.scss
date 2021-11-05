@@ -97,6 +97,13 @@ html, body {
 .notion-semantic-string span {
     overflow-x: visible;
 }
+/*html.unloaded, html {
+    opacity: 0;
+}
+html.loaded {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}*/
 //html.modified {
 body {
     background: linear-gradient(180deg, rgba(214,247,255,1), rgba(255,255,255,1)) !important;

@@ -139,6 +139,18 @@ class nysicsbootstrap {
         document.getElementsByTagName('body')[0].prepend(navContainer);
     }
 
+    loadHTML(t) {
+        var html = document.getElementsByTagName('html')[0];
+        if (t) {
+            html.classList.remove('unloaded');
+            html.classList.add('loaded');
+        }
+        else {
+            html.classList.add('unloaded');
+            html.classList.remove('loaded');
+        }
+    }
+
     pageInit() {
         console.log('PageInit');
 
@@ -240,11 +252,10 @@ class nysicsbootstrap {
         }
 
         $('.notion-callout').each(function() {
-            $(this).has('.notion-callout__content > .notion-image:nth-child(2)').each(function() { calloutFixImage(this, 'image-body')});
+            //$(this).has('.notion-callout__content > .notion-image:nth-child(2)').each(function() { calloutFixImage(this, 'image-body')});
             $(this).has('.notion-callout__icon img').each(function() { calloutFixImage(this, 'image-icon')});
             $(this).has('.notion-callout__content > .notion-embed:nth-child(2)').each(function() { calloutFixVideo(this)});
         });
-        
     }
 
     startMutation() {
@@ -274,14 +285,23 @@ class nysicsbootstrap {
         observer.observe(targetNode, config);
     }
 
+    /*
+    firstInit will run the first time the domain is loaded into the DOM.
+    This creates a custom nav if it needs, runs the scripts needed to format the page,
+    and then starts a mutation observer to observe and dynamic changes made.
+    */
     firstInit() {
-        console.log('firstInit')
+        console.log('firstInit');
+        //this.loadHTML(false);
         //Add tag to HTML
         var root = document.getElementsByTagName( 'html' ); 
         root[0].setAttribute( 'class', 'modified' );
         //This ensures any styling we do only applies if JavaScript works. If it doesn't, we deault to Super's style.
 
         document.addEventListener('DOMContentLoaded', (event) => {
+
+            //this.loadHTML(true);
+
             this.createNav();
             this.pageInit();
             this.startMutation();
@@ -321,6 +341,8 @@ class nysicsbootstrap {
             }
         }*/
         console.log('running!')
+        //console.log('body: ' + body)
+
         //first run!
         this.firstInit();
         console.log('end first init')

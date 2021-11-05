@@ -95,6 +95,13 @@ html, html .notion-semantic-string, body, body .notion-semantic-string {
   overflow-x: visible;
 }
 
+/*html.unloaded, html {
+    opacity: 0;
+}
+html.loaded {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}*/
 body {
   background: linear-gradient(180deg, #d6f7ff, white) !important;
   background-attachment: fixed;
