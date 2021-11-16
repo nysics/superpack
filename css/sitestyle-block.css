@@ -62,12 +62,16 @@
   --boxshadow-default: 0px 3px 25px rgba(0,0,0,.2);
   --boxshadow-heavy: 0px 5px 35px rgba(0,0,0,.4);
   --text-shadow-default: 0px 3px 25px rgba(24, 15, 15, 1);
-  --text-shadow-heavy: 0px 3px 25px rgba(0, 0, 0, 1);
+  --text-shadow-heavy: 0px 3px 15px rgba(0, 0, 0, 1), 0px 0px 25px rgba(0, 0, 0, .5);
   --padding-safe-area-left: calc(env(safe-area-inset-left) + 96px);
   --padding-safe-area-right: calc(env(safe-area-inset-right) + 96px);
   --page-Header-Width: 40%;
   --page-Content-Width: 60&;
   --mage-Content-Max-Width: unset;
+  /*--breakpoint-1: max-width: 680px;
+  (max-width: 546px)
+  (max-width: 450px) {
+      (max-width: 860px) {*/
 }
 
 ::-moz-selection {
@@ -145,6 +149,10 @@ h3 .notion-semantic-string {
 
 #page-index .notion-header {
   display: none;
+}
+
+.notion-callout > .notion-callout__content {
+  margin-left: 0px;
 }
 
 .bg-pink {
@@ -284,6 +292,7 @@ h3 .notion-semantic-string {
 .n-callout-hero {
   margin: 0px !important;
   padding: 0px !important;
+  padding-top: var(--navHeight) !important;
   width: 100vw;
   align-self: center;
   border: none !important;
@@ -301,6 +310,10 @@ h3 .notion-semantic-string {
 }
 .n-callout-hero > .notion-callout__content .notion-column {
   justify-content: flex-end;
+}
+.n-callout-hero .notion-divider {
+  padding-top: 1vw;
+  padding-bottom: 1vw;
 }
 .n-callout-hero .notion-callout__bg::before {
   content: "";
@@ -331,7 +344,7 @@ h3 .notion-semantic-string {
 
 .n-callout-children .notion-callout:not(.n-cta-button) {
   align-self: stretch;
-  border-radius: 70px;
+  border-radius: 5vw;
   box-shadow: var(--boxshadow-default);
   border: solid 2px rgba(255, 255, 255, 0.5);
   transition: all 0.5s ease-in-out;
@@ -346,12 +359,14 @@ h3 .notion-semantic-string {
   width: 100%;
   opacity: 0.5;
   transition: all ease-in-out 0.5s;
+  z-index: 2;
 }
 .n-callout-children .notion-callout:not(.n-cta-button) .notion-callout__content {
   padding: 10px;
 }
 .n-callout-children .notion-callout:not(.n-cta-button) .notion-callout__content h1 .notion-semantic-string {
   font-size: 2vw;
+  line-height: 0.5 !important;
 }
 .n-callout-children .notion-callout:not(.n-cta-button) .notion-callout__content > .notion-semantic-string, .n-callout-children .notion-callout:not(.n-cta-button) .notion-callout__icon {
   display: none !important;
@@ -396,18 +411,25 @@ h3 .notion-semantic-string {
 
 /* CTA Buttons */
 .n-cta-button {
-  border: solid 3px white !important;
   border-radius: 20px !important;
   padding: 10px 15px !important;
-  color: white;
   font-weight: bold;
   text-transform: uppercase;
-  background-color: var(--button-color);
   text-shadow: none;
   align-content: center;
   justify-content: center;
   box-shadow: var(--boxshadow-default);
   transition: all ease-in-out 0.2s;
+}
+.n-cta-button.btn-primary {
+  color: white;
+  border: solid 3px white !important;
+  background-color: var(--button-color);
+}
+.n-cta-button.btn-secondary {
+  border: solid 3px var(--button-color) !important;
+  background-color: white;
+  color: var(--button-color);
 }
 .n-cta-button:hover {
   transform: scale(1.03);
@@ -474,7 +496,7 @@ h3 .notion-semantic-string {
   left: 0px;
   height: 100%;
   width: 100%;
-  z-index: 0;
+  z-index: 1;
   padding: 0px;
   margin: 0px;
   background-color: black;
