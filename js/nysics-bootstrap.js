@@ -190,15 +190,28 @@ class nysicsbootstrap {
             $(this).addClass('n-cta-button');
 
             if($(this).find('a.notion-link').length !== 0) { $(this).addClass('contains-link') }
+            if($(this).find('> .notion-callout__content > .notion-semantic-string strong').length !== 0) { $(this).addClass('btn-secondary') }
+                else { $(this).addClass('btn-primary')}
         });
 
         //Add links to Callouts
-        $('.notion-callout').has('> .notion-callout__content > .notion-semantic-string a').each(function(index) {
+        $('.notion-callout').has('> .notion-callout__content > .notion-semantic-string a:first-child').each(function(index) {
             $(this).addClass('contains-link');
-            var link = $(this).find('> .notion-callout__content > .notion-semantic-string a'); //Get link object
+            var link = $(this).find('> .notion-callout__content > .notion-semantic-string a:first-child'); //Get link object
+
             var linkHTML = $(link).html();
             $(link).html("");
             $(link).parent().append(linkHTML);
+
+            var linkHREF = "0";
+            if ($(link).attr("href") != undefined) linkHREF = $(link).attr("href");
+            if (linkHREF.indexOf("tel:sms:") >= 0) {
+                var href = linkHREF.split('tel:');
+                var newHREF = href[1];
+                console.log(`Link contains SMS: ${newHREF}`);
+                $(link).attr("href", newHREF);
+            }
+
             $(link).detach();
             $(link).addClass('notion-callout-link-container')
             $(this).parent().append(link);
