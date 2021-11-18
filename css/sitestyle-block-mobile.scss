@@ -2,15 +2,15 @@
 
 // Mobile
 
-:root {
+/*:root {
     --navHeight: 70px;
     --box-radius: 20px;
     --padding-safe-area-left:  calc(env(safe-area-inset-left) + 24px);
     --padding-safe-area-right:  calc(env(safe-area-inset-right) + 24px);
-}
+}*/
 
 /* Navbar */
-.n-navbar, .super-navbar {
+/*.n-navbar, .super-navbar {
     --padding-LR: 10px;
 
     top: unset !important;
@@ -36,10 +36,10 @@
     }
 }
 
-
+*/
 /* Collections */
 
-
+/*
 //Hero Collections
 article.notion-root > .notion-collection:first-child, .notion-collection.hero {
     width:100vw;
@@ -77,4 +77,4 @@ article.notion-root > .notion-collection:first-child, .notion-collection.hero {
             }
         }
     }
-}
+}*/

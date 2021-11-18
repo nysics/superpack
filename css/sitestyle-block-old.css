@@ -764,13 +764,12 @@ body:not(.n-full-width) .super-content.super-content.max-width .notion-page__pro
     }
 }*/
 @media (max-width: 546px) {
-  :root {
-    --navHeight: 70px;
-    --box-radius: 20px;
-    --padding-safe-area-left: calc(env(safe-area-inset-left) + 24px);
-    --padding-safe-area-right: calc(env(safe-area-inset-right) + 24px);
-  }
-
+  /*:root {
+      --navHeight: 70px;
+      --box-radius: 20px;
+      --padding-safe-area-left:  calc(env(safe-area-inset-left) + 24px);
+      --padding-safe-area-right:  calc(env(safe-area-inset-right) + 24px);
+  }*/
   /* Navbar */
   .n-navbar, .super-navbar {
     --padding-LR: 10px;
