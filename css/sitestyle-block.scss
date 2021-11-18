@@ -81,6 +81,7 @@ $bp-xxl: 1400px;
     --collection-card-cover-size-large: 320px !important;
 
     --navHeight: 80px;
+    --navScreenMargin: 20px;
     --button-radius: 20px;
     --button-color: #159393;
     --box-radius: 30px;
@@ -97,7 +98,7 @@ $bp-xxl: 1400px;
     --text-shadow-default: 0px 3px 25px rgba(24, 15, 15, 1);
     --text-shadow-heavy: 0px 3px 15px rgba(0, 0, 0, 1),  0px 0px 25px rgba(0, 0, 0, .5);
 
-    --padding-safe-area-top:  calc(env(safe-area-inset-top) + var(--navHeight));
+    --padding-safe-area-top:  calc(env(safe-area-inset-top) + var(--navHeight) + var(--navScreenMargin));
     --padding-s-lr: 96px;
     --padding-safe-area-left:  calc(env(safe-area-inset-left) + var(--padding-s-lr));
     --padding-safe-area-right:  calc(env(safe-area-inset-right) + var(--padding-s-lr));
@@ -253,19 +254,18 @@ h3 .notion-semantic-string{
 .n-navbar, .super-navbar {
     --padding-LR: 20px;
     --padding-TB: 10px;
-    --screenMargin: 20px;
 
     display: block;
     padding-left: var(--padding-safe-area-left) !important;
     padding-right: var(--padding-safe-area-right) !important;
     width: 100% !important;
-    height: calc(var(--navHeight) + var(--screenMargin)) !important;
+    height: calc(var(--navHeight) + var(--navScreenMargin)) !important;
     position: fixed !important;
     top: calc(0px + env(safe-area-inset-top));
     left:0px;
     box-sizing: border-box;
     z-index: 1000;
-    padding-top: var(--screenMargin);
+    padding-top: var(--navScreenMargin);
     background-color: transparent !important;
 
     a, a div, a svg {
@@ -459,7 +459,7 @@ h3 .notion-semantic-string{
 //The Four Buttons
 .n-callout-children .notion-callout:not(.n-cta-button) {
     align-self: stretch;
-    border-radius: 5vw;
+    border-radius: 3vw;
     box-shadow: var(--boxshadow-default);
     border:solid 2px rgba(255, 255, 255, .5);
     transition: all .5s ease-in-out;
@@ -513,7 +513,7 @@ h3 .notion-semantic-string{
         }
     }
 }
-.n-callout-children .notion-image.page-width {
+.n-callout-children .notion-callout__bg .notion-image.page-width {
     border-radius: 70px;
     box-shadow: var(--boxshadow-default);
     border:solid 2px rgba(255, 255, 255, .5);
@@ -542,6 +542,10 @@ h3 .notion-semantic-string{
 /* Page Header */
 .notion-header {
     padding-top: var(--padding-safe-area-top);
+
+    body.n-contains-hero & {
+        display: none;
+    }
 }
 
 
@@ -636,7 +640,20 @@ h3 .notion-semantic-string{
     margin: 0px;
     background-color: black;
 
+    .notion-callout__bg__embed {
+        z-index: 2;
+        iframe {
+            height: 100%;
+            width: 100%;
+        }
 
+        @include breakpoint($bp-lg) {
+            display: none !important;
+        }
+    }
+    .notion-callout__bg__image-icon, .notion-callout__bg__image-body {
+        z-index: 1;
+    }
     .notion-callout__bg__image-body {
 
         animation: bgImageIn 1.5s ease-in-out;
@@ -649,6 +666,9 @@ h3 .notion-semantic-string{
         height:100% !important;
         width: 100% !important;
         object-fit: cover !important;
+        position: absolute;
+        top: 0px;
+        left: 0px;
     }
 }
 

@@ -223,8 +223,16 @@ class nysicsbootstrap {
 
         //Add images to Callouts
         var calloutCreateBG = function(self) {
-            //TODO: add logic to determine if this is already here
-            var container = $('<div class="notion-callout__bg">');
+
+            var container = null;
+            if ($(self).find('.notion-callout__bg').length) {
+                console.log('found bg!')
+                container = $(self).find('.notion-callout__bg');
+            }
+            else {
+                console.log('creating bg');
+                container = $('<div class="notion-callout__bg">');
+            }
 
             $(self).append(container);
 
@@ -252,6 +260,8 @@ class nysicsbootstrap {
         var calloutFixVideo = function(self) {
             $(self).addClass('contains-embed');
 
+
+
             var videoBGContainer = $('<div class="notion-callout__bg__embed">');
             var videoContainer =  $(calloutCreateBG(self)).append(videoBGContainer);
 
@@ -259,8 +269,23 @@ class nysicsbootstrap {
 
             video = $(self).find('.notion-callout__content > .notion-embed:nth-child(2)')[0];
 
+            var videoEmbed = $(video).find('iframe')[0];
+            var videoSRC = $(videoEmbed).attr('src');
             $(video).detach();
-            $(videoBGContainer).append(video);
+
+            console.log(`videoSRC: ${videoSRC}`);
+            if(videoSRC.indexOf('youtube') >= 0) {
+                console.log('is youtube');
+                var n = videoSRC.split('/embed/');
+                var m = n[1].split('?')
+                var r = m[0];
+                videoSRC = `https://www.youtube.com/embed/${r}?playlist=${r}&autohide=1&autoplay=1&controls=0&enablejsapi=1&iv_load_policy=3&loop=1&modestbranding=1&playsinline=1&rel=0&showinfo=0&wmode=opaque&widgetid=1&mute=1`;
+            }
+            var newEmbed = $(`<iframe src="${videoSRC}" scrolling="no" marginheight="0" marginwidth="0" type="text/html" frameborder="0" sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin"></iframe>`);
+            console.log('new URL: ' + videoSRC);
+            
+
+            $(videoBGContainer).append(newEmbed);
 
         }
 
