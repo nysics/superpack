@@ -90,7 +90,7 @@ $bp-xxl: 1400px;
     --color-highlight-default: #24AFFF;
     --title-font-family: 'Montserrat', sans-serif; 
 
-    --divider-thickness: 60px;
+    --divider-thickness: 40px;
 
     --boxshadow-default: 0px 3px 25px rgba(0,0,0,.2);
     --boxshadow-heavy: 0px 5px 35px rgba(0,0,0,.4);
@@ -98,8 +98,9 @@ $bp-xxl: 1400px;
     --text-shadow-heavy: 0px 3px 15px rgba(0, 0, 0, 1),  0px 0px 25px rgba(0, 0, 0, .5);
 
     --padding-safe-area-top:  calc(env(safe-area-inset-top) + var(--navHeight));
-    --padding-safe-area-left:  calc(env(safe-area-inset-left) + 96px);
-    --padding-safe-area-right:  calc(env(safe-area-inset-right) + 96px);
+    --padding-s-lr: 96px;
+    --padding-safe-area-left:  calc(env(safe-area-inset-left) + var(--padding-s-lr));
+    --padding-safe-area-right:  calc(env(safe-area-inset-right) + var(--padding-s-lr));
 
     --page-Header-Width: 40%;
     --page-Content-Width: 60&;
@@ -113,8 +114,7 @@ $bp-xxl: 1400px;
 
     @include breakpoint($bp-xl) {
 
-        --padding-safe-area-left:  calc(env(safe-area-inset-left) + 24px);
-        --padding-safe-area-right:  calc(env(safe-area-inset-right) + 24px);
+        --padding-s-lr: 24px;
 
     }
     @include breakpoint($bp-lg) {
@@ -127,10 +127,8 @@ $bp-xxl: 1400px;
     }
     @include breakpoint($bp-sm) {
 
-        --divider-thickness: 5px;
 
-        --padding-safe-area-left:  calc(env(safe-area-inset-left) + 10px);
-        --padding-safe-area-right:  calc(env(safe-area-inset-right) + 10px);
+        --padding-s-lr: 15px;
     }
     
 }
@@ -225,11 +223,12 @@ h3 .notion-semantic-string{
     text-align: center;
 }
 .notion-divider {
-    margin-top: var(--divider-thickness) !important;
-    margin-bottom: var(--divider-thickness) !important;
+    padding-top: var(--divider-thickness) !important;
+    padding-bottom: var(--divider-thickness) !important;
     border-color: transparent !important;
     border-width: 0px !important;
     opacity: 0;
+    margin: 0px !important;
 }
 
 .super-content {
@@ -410,6 +409,9 @@ h3 .notion-semantic-string{
 
     h1 .notion-semantic-string{
         font-size: 5.8vw;
+        @include breakpoint($bp-lg) {
+            font-size: 1.5em;
+        }
     }
     & > .notion-callout__content .notion-column {
         justify-content: flex-end;
