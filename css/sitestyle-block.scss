@@ -553,10 +553,10 @@ h3 .notion-semantic-string{
     position: relative;
     border-radius:15px !important;
 
-    .notion-callout__icon {
+    & > .notion-callout__icon {
         display: none;
     }
-    .notion-callout__content {
+    & > .notion-callout__content {
         & > .notion-semantic-string {
             display: none;
         }
@@ -609,6 +609,7 @@ h3 .notion-semantic-string{
         iframe {
             height: 100%;
             width: 100%;
+            transform: scale(1.1);
         }
 
         @include breakpoint($bp-lg) {

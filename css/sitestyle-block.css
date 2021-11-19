@@ -521,19 +521,19 @@ body.n-contains-hero .notion-header {
   position: relative;
   border-radius: 15px !important;
 }
-.notion-callout:not(.n-cta-button) .notion-callout__icon {
+.notion-callout:not(.n-cta-button) > .notion-callout__icon {
   display: none;
 }
-.notion-callout:not(.n-cta-button) .notion-callout__content {
+.notion-callout:not(.n-cta-button) > .notion-callout__content {
   position: relative;
   z-index: 2;
   overflow: visible;
   padding: 10px 25px;
 }
-.notion-callout:not(.n-cta-button) .notion-callout__content > .notion-semantic-string {
+.notion-callout:not(.n-cta-button) > .notion-callout__content > .notion-semantic-string {
   display: none;
 }
-.notion-callout:not(.n-cta-button) .notion-callout__content .notion-heading {
+.notion-callout:not(.n-cta-button) > .notion-callout__content .notion-heading {
   overflow: visible;
 }
 .notion-callout:not(.n-cta-button).contains-image > .notion-callout__icon {
@@ -586,6 +586,7 @@ body.n-contains-hero .notion-header {
 .notion-callout__bg .notion-callout__bg__embed iframe {
   height: 100%;
   width: 100%;
+  transform: scale(1.1);
 }
 @media only screen and (max-width: 860px) {
   .notion-callout__bg .notion-callout__bg__embed {
