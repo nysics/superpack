@@ -1,0 +1,34 @@
+@import './scssmixins.scss';
+
+.notion-toggle.bg-purple {
+    //display: none;
+}
+.notion-callout > .notion-callout__content {
+    margin-left: 0px;
+}
+.bg-pink {
+    background-color: transparent !important;
+    text-align: center;
+}
+.notion-divider {
+    padding-top: var(--divider-thickness) !important;
+    padding-bottom: var(--divider-thickness) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+    opacity: 0;
+    margin: 0px !important;
+}
+
+.super-content {
+    padding-left: var(--padding-safe-area-left) !important;
+    padding-right: var(--padding-safe-area-right) !important;
+}
+
+.notion-column-list {
+    .notion-column {
+        @include breakpoint ($bp-lg) {
+            @include column-full-width();
+        }
+    }
+}
+

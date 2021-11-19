@@ -1,0 +1,34 @@
+$bp-xs: 450px;
+$bp-sm: 546px;
+$bp-md: 680px;
+$bp-lg: 860px;
+$bp-xl: 1200px;
+$bp-xxl: 1400px;
+
+@mixin breakpoint ($max, $min: null) {
+    @if ($min != null) {
+        @if($max == null) {
+            @media only screen and (min-width: ($min + 1)) {
+                @content;
+            }
+        }
+        @else {
+            @media only screen and (min-width: ($min + 1)) and (max-width: $max) {
+                @content;
+            }
+        }
+    }
+    @else {
+        @media only screen and (max-width: $max) {
+            @content;
+        }
+    }
+} 
+
+
+@mixin column-full-width {
+
+    width: 100% !important;
+    -webkit-margin-start: 0!important;
+    margin-inline-start: 0!important;
+}

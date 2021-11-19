@@ -1,0 +1,30 @@
+.notion-callout > .notion-callout__content {
+  margin-left: 0px;
+}
+
+.bg-pink {
+  background-color: transparent !important;
+  text-align: center;
+}
+
+.notion-divider {
+  padding-top: var(--divider-thickness) !important;
+  padding-bottom: var(--divider-thickness) !important;
+  border-color: transparent !important;
+  border-width: 0px !important;
+  opacity: 0;
+  margin: 0px !important;
+}
+
+.super-content {
+  padding-left: var(--padding-safe-area-left) !important;
+  padding-right: var(--padding-safe-area-right) !important;
+}
+
+@media only screen and (max-width: 860px) {
+  .notion-column-list .notion-column {
+    width: 100% !important;
+    -webkit-margin-start: 0 !important;
+    margin-inline-start: 0 !important;
+  }
+}/*# sourceMappingURL=notion-reset.css.map */
