@@ -161,6 +161,10 @@ class nysicsbootstrap {
 
         $('body').has('article > .notion-collection').addClass('n-contains-hero');
 
+        //Remove property leftovers from other pages
+        if($('.notion-header__content').has('> .notion-page__properties').length) {
+            $('.notion-header__content > .notion-page__properties').detach();
+        }
         //Move properties to the header
         if($('article').has('> .notion-page__properties').length) {
             var props = $('article > .notion-page__properties');

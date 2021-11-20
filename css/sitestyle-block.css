@@ -232,6 +232,22 @@ h3 .notion-semantic-string {
   padding-top: var(--navScreenMargin);
   background-color: transparent !important;
 }
+@media only screen and (max-width: 860px) {
+  .super-navbar {
+    top: unset !important;
+    bottom: calc(0px + env(safe-area-inset-bottom)) !important;
+    padding-top: 0px;
+    padding-bottom: var(--navScreenMargin);
+  }
+}
+.super-navbar .super-navbar__menu-wrapper {
+  transform-origin: bottom right;
+}
+.super-navbar .super-navbar__menu-wrapper .super-navbar__menu {
+  position: absolute;
+  top: unset;
+  bottom: calc(var(--navHeight) + var(--navScreenMargin));
+}
 .super-navbar a, .super-navbar a div, .super-navbar a svg {
   cursor: default;
 }
@@ -471,14 +487,6 @@ h3 .notion-semantic-string {
   display: none;
 }
 
-/* Page Header */
-.notion-header {
-  padding-top: var(--padding-safe-area-top);
-}
-body.n-contains-hero .notion-header {
-  display: none;
-}
-
 /* CTA Buttons */
 .n-cta-button {
   border-radius: 20px !important;
@@ -613,6 +621,7 @@ body.n-contains-hero .notion-header {
   left: 0px;
 }
 
+/* Page Header */
 @media only screen and (min-width: 861px) {
   body.n-normal-width .notion-header {
     width: 40%;
@@ -668,6 +677,80 @@ body.n-contains-hero .notion-header {
     margin-top: calc(var(--navHeight) + var(--navScreenMargin) + 20px);
   }
 }
+@media only screen and (max-width: 860px) {
+  body.n-normal-width .notion-header, body.n-full-width .notion-header {
+    width: 100%;
+    margin: 0px;
+    margin-bottom: 20px;
+    background-color: white;
+    display: flex !important;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    min-height: 400px;
+  }
+  body.n-normal-width .notion-header .notion-header__cover, body.n-full-width .notion-header .notion-header__cover {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    max-height: unset;
+  }
+  body.n-normal-width .notion-header .notion-header__cover span, body.n-normal-width .notion-header .notion-header__cover img, body.n-full-width .notion-header .notion-header__cover span, body.n-full-width .notion-header .notion-header__cover img {
+    height: inherit !important;
+  }
+  body.n-normal-width .notion-header .notion-header__cover.has-cover::before, body.n-full-width .notion-header .notion-header__cover.has-cover::before {
+    content: "";
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.8));
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  body.n-normal-width .notion-header .notion-header__content, body.n-full-width .notion-header .notion-header__content {
+    padding: 0px !important;
+    margin: 0px !important;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    max-width: unset;
+    padding-left: var(--padding-safe-area-left) !important;
+    padding-right: var(--padding-safe-area-left) !important;
+    padding-top: calc(var(--navHeight) + var(--navScreenMargin)) !important;
+    padding-bottom: 20px !important;
+  }
+  body.n-normal-width .notion-header .notion-header__content.has-cover, body.n-full-width .notion-header .notion-header__content.has-cover {
+    --color-text-default-light: white;
+    color: var(--color-text-default-light);
+  }
+  body.n-normal-width .notion-header .notion-header__content .notion-header__icon-wrapper, body.n-full-width .notion-header .notion-header__content .notion-header__icon-wrapper {
+    margin: 0px auto;
+    position: unset !important;
+    display: block;
+  }
+  body.n-normal-width .notion-header .notion-page__properties, body.n-full-width .notion-header .notion-page__properties {
+    display: flex;
+  }
+  body.n-normal-width .notion-header .notion-page__properties .notion-page__property, body.n-full-width .notion-header .notion-page__properties .notion-page__property {
+    display: flex !important;
+    width: auto;
+  }
+  body.n-normal-width .notion-header .notion-page__properties .notion-page__property-name, body.n-full-width .notion-header .notion-page__properties .notion-page__property-name {
+    display: none;
+  }
+}
+body.n-contains-hero .notion-header {
+  display: none !important;
+}
+
 @media (max-width: 680px) {
   /*:root {
       --navHeight: 70px;

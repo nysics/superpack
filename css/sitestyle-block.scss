@@ -222,6 +222,25 @@ h3 .notion-semantic-string{
     padding-top: var(--navScreenMargin);
     background-color: transparent !important;
 
+    @include breakpoint($bp-lg) {
+        top: unset !important;
+        bottom: calc(0px + env(safe-area-inset-bottom)) !important;
+        padding-top: 0px;
+        padding-bottom: var(--navScreenMargin);
+
+    }
+    .super-navbar__menu-wrapper {
+        transform-origin: bottom right;
+        &.active {
+
+        }
+        .super-navbar__menu {
+            position: absolute;
+            top: unset;
+            bottom: calc(var(--navHeight) + var(--navScreenMargin));
+        }
+    }
+
     a, a div, a svg {
         cursor: default;
     }
@@ -493,14 +512,6 @@ h3 .notion-semantic-string{
     display: none;
 }
 
-/* Page Header */
-.notion-header {
-    padding-top: var(--padding-safe-area-top);
-
-    body.n-contains-hero & {
-        display: none;
-    }
-}
 
 
 /* CTA Buttons */
@@ -637,7 +648,12 @@ h3 .notion-semantic-string{
     }
 }
 
+//
 // Layout and Content
+//
+
+/* Page Header */
+// Desktop & Tablet
 @media only screen and (min-width: ($bp-lg + 1)) {
     body.n-full-width {
         @import './layout/full-width.scss';
@@ -646,13 +662,16 @@ h3 .notion-semantic-string{
         @import './layout/normal-width.scss';
     }
 }
-
-@media only screen and (min-width: $bp-lg) {
-body.n-normal-width, body.n-full-width {
-    @include breakpoint($bp-md) {
-
+// Mobile
+@media only screen and (max-width: $bp-lg) {
+    body.n-normal-width, body.n-full-width {
+        @import './layout/content-mobile.scss';
     }
 }
+.notion-header {
+    body.n-contains-hero & {
+        display: none !important;
+    }
 }
 
 
