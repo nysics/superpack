@@ -674,6 +674,7 @@ h3 .notion-semantic-string{
     }
 }
 
+@import './layout/tables-galleries.scss';
 
 @media (max-width: $bp-md) {
 @import './sitestyle-block-mobile.scss';

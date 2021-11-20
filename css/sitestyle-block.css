@@ -751,6 +751,16 @@ body.n-contains-hero .notion-header {
   display: none !important;
 }
 
+.notion-collection > div:first-child {
+  display: none;
+}
+
+.notion-collection .notion-collection-gallery {
+  border-top: none !important;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
 @media (max-width: 680px) {
   /*:root {
       --navHeight: 70px;
