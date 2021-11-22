@@ -12,19 +12,25 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: flex-end;
-    min-height: 400px;
+    position: relative;
 
-    .notion-header__cover {
-        position: absolute;
-        left: 0px;
-        right: 0px;
-        z-index: 1;
-        height: 100%;
-        width: 100%;
-        max-height: unset;
+    .notion-header__cover.has-cover {
+        position: unset;
+        min-height: 80vh;
 
-        span, img {
-            height: inherit !important;
+        & > span {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+            max-height: unset;
+
+            img {
+                height: inherit !important;
+                object-position: center center !important;
+            }
         }
 
         &.has-cover::before {
@@ -44,20 +50,27 @@
         margin: 0px !important;
         position: relative;
         z-index: 2;
-        width: 100%;
-        text-align: center;
+        text-align: left;
         display: flex;
         flex-direction: column;
         width: 100% !important;
         max-width: unset;
         padding-left: var(--padding-safe-area-left) !important;
         padding-right: var(--padding-safe-area-left) !important;
-        padding-top: calc(var(--navHeight) + var(--navScreenMargin)) !important;
+        padding-top: calc(var(--padding-safe-area-top) + 20px) !important;
         padding-bottom: 20px !important;
+
 
         &.has-cover {
             --color-text-default-light: white;
             color: var(--color-text-default-light);
+            padding-top: calc(var(--navScreenMargin)) !important;
+            text-shadow: var(--text-shadow-default);
+            backdrop-filter: blur(25px) brightness(.9);
+        }
+        &.no-cover {
+            --color-text-default-light: var(--color-text-default);
+            color: var(--color-text-default);
         }
 
         .notion-header__icon-wrapper {
@@ -65,10 +78,18 @@
             position: unset !important;
             display: block;
         }
+        .notion-header__title-wrapper {
+            margin: 0px;
+        }
     }
 
     .notion-page__properties {
         display: flex;
+        //padding-top: ;
+        min-height: unset !important;
+        .notion-property, .notion-page__property {
+            min-height: unset !important;
+        }
         .notion-page__property {
             display: flex !important; 
             width: auto;
@@ -76,10 +97,22 @@
         .notion-page__property-name {
             display: none;
         }
+
+        #block-root-divider {
+            display: none;
+        }
     }
 }
 
+&.n-contains-featuredmedia .notion-header {
+    margin-bottom: 0px;
+}
+
 .super-content {
-    
+    max-width: unset;
+    .notion-embed.n-featuredmedia, #block-d79aa4dadc4847ec95276c136b84d8e0 { //Featured media + footer
+        width: calc(100% + var(--padding-safe-area-left) + var(--padding-safe-area-right));
+        align-self: center;
+    }
 }
 //}

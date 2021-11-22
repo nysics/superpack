@@ -154,24 +154,36 @@ class nysicsbootstrap {
     pageInit() {
         console.log('PageInit');
 
-        $('body').removeClass('n-contains-hero n-full-width n-normal-width');
+        $('body').removeClass('n-contains-hero n-full-width n-normal-width n-contains-featuredmedia');
 
         $('body').has('div > article.notion-root.full-width').addClass('n-full-width');
         $('body').has('div > article.notion-root:not(.full-width)').addClass('n-normal-width');
 
-        $('body').has('article > .notion-collection').addClass('n-contains-hero');
 
         //Remove property leftovers from other pages
         if($('.notion-header__content').has('> .notion-page__properties').length) {
             $('.notion-header__content > .notion-page__properties').detach();
+            $('.notion-header__content').removeClass('has-props')
         }
         //Move properties to the header
         if($('article').has('> .notion-page__properties').length) {
             var props = $('article > .notion-page__properties');
+            $('.notion-header__content').addClass('has-props');
             $('.notion-header__content').append(props);
         }
 
+        
+        // Turn first-child embeds into featured media
+        $('article > .notion-embed:first-child').each(function() {
+            $(this).addClass('n-featuredmedia');
+            $('body').addClass('n-contains-featuredmedia');
+        })
+
+
+
         //Turn first callouts into headers
+        // $('body').has('article > .notion-collection:first-child').addClass('n-contains-hero');
+
         if ($('article > .notion-callout:first-child').length) {
             var callout = $('article > .notion-callout:first-child');
 
@@ -194,20 +206,26 @@ class nysicsbootstrap {
         }
 
 
-        // Find Buttons
-        var ctabuttons = $('.notion-callout:not(.bg-gray-light, .bg-brown-light, .bg-orange-light, .bg-yellow-light, .bg-green-light, .bg-blue-light, .bg-purple-light, .bg-pink-light, .bg-red-light)').each(
-            function() {
-            $(this).addClass('n-cta-button');
+        
 
-            if($(this).find('a.notion-link').length !== 0) { $(this).addClass('contains-link') }
-            if($(this).find('> .notion-callout__content > .notion-semantic-string strong').length !== 0) { $(this).addClass('btn-secondary') }
-                else { $(this).addClass('btn-primary')}
-        });
+
+        
+        // Find CTA Buttons
+        //var ctabuttons = $('.notion-callout').not('> .notion-callout__content > *:nth-child(2)').each( //$('.notion-callout:not(.bg-gray-light, .bg-brown-light, .bg-orange-light, .bg-yellow-light, .bg-green-light, .bg-blue-light, .bg-purple-light, .bg-pink-light, .bg-red-light)')
+        var parseCTAbutton = function(self) {
+            $(self).addClass('n-cta-button');
+            console.log('inside Parse CTA');
+
+            //if($(self).find('a.notion-link').length !== 0) { $(self).addClass('contains-link') }
+            if($(self).find('> .notion-callout__content > .notion-semantic-string strong').length !== 0) { $(self).addClass('btn-secondary') }
+                else { $(self).addClass('btn-primary')}
+        }
+        //});
 
         //Add links to Callouts
-        $('.notion-callout').has('> .notion-callout__content > .notion-semantic-string a:first-child').each(function(index) {
-            $(this).addClass('contains-link');
-            var link = $(this).find('> .notion-callout__content > .notion-semantic-string a:first-child'); //Get link object
+        var parseCalloutLink = function(self) {
+            $(self).addClass('contains-link');
+            var link = $(self).find('> .notion-callout__content > .notion-semantic-string a:first-child'); //Get link object
 
             var linkHTML = $(link).html();
             $(link).html("");
@@ -224,12 +242,11 @@ class nysicsbootstrap {
 
             $(link).detach();
             $(link).addClass('notion-callout-link-container')
-            $(this).parent().append(link);
+            $(self).parent().append(link);
 
-            $(link).append(this);
+            $(link).append(self);
 
-        });
-
+        }
 
         //Add images to Callouts
         var calloutCreateBG = function(self) {
@@ -270,39 +287,70 @@ class nysicsbootstrap {
         var calloutFixVideo = function(self) {
             $(self).addClass('contains-embed');
 
-
+            var isVideo = false;
 
             var videoBGContainer = $('<div class="notion-callout__bg__embed">');
             var videoContainer =  $(calloutCreateBG(self)).append(videoBGContainer);
 
-            var video = null;
-
-            video = $(self).find('.notion-callout__content > .notion-embed:nth-child(2)')[0];
+            var video = $(self).find('.notion-callout__content > .notion-embed:nth-child(2)')[0];
 
             var videoEmbed = $(video).find('iframe')[0];
+            $(videoEmbed).attr('loading','eager');
             var videoSRC = $(videoEmbed).attr('src');
-            $(video).detach();
 
-            console.log(`videoSRC: ${videoSRC}`);
-            if(videoSRC.indexOf('youtube') >= 0) {
-                console.log('is youtube');
-                var n = videoSRC.split('/embed/');
-                var m = n[1].split('?')
-                var r = m[0];
-                videoSRC = `https://www.youtube.com/embed/${r}?playlist=${r}&autohide=1&autoplay=1&controls=0&enablejsapi=1&iv_load_policy=3&loop=1&modestbranding=1&playsinline=1&rel=0&showinfo=0&wmode=opaque&widgetid=1&mute=1`;
+            try {
+                if(videoSRC.indexOf('youtube') >= 0) {
+                    isVideo = true;
+                    var n = videoSRC.split('/embed/');
+                    var m = n[1].split('?')
+                    var r = m[0];
+                    $(videoBGContainer).addClass('contains-video contains-youtube');
+                    videoSRC = `https://www.youtube.com/embed/${r}?playlist=${r}&autohide=1&autoplay=1&controls=0&enablejsapi=1&iv_load_policy=3&loop=1&modestbranding=1&playsinline=1&rel=0&showinfo=0&wmode=opaque&widgetid=1&mute=1`;
+                }
+            } catch (error) {
+                $(video).detach();
+                return;
             }
             var newEmbed = $(`<iframe src="${videoSRC}" scrolling="no" marginheight="0" marginwidth="0" type="text/html" frameborder="0" sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin"></iframe>`);
             console.log('new URL: ' + videoSRC);
             
 
+            $(video).detach();
             $(videoBGContainer).append(newEmbed);
+
+            function videoSize() {
+                var w = $(self).width();
+                var h = $(self).height();
+
+                if (w > (h * 1.78)) {
+                    $(newEmbed).height($(newEmbed).width() / 1.78);
+                }
+                else {
+                    $(newEmbed).width(1.78 * $(newEmbed).height());
+                }
+                console.log('video resized');
+            } 
+            if(isVideo) {
+                $( window ).resize(function() {
+                    videoSize();
+                });
+                videoSize();
+            }
 
         }
 
+
+        // Parse callous
         $('.notion-callout').each(function() {
+            if($(this).has('> .notion-callout__content > .notion-semantic-string a:first-child')) { parseCalloutLink(this); } //Has a link
+
+            if($(this).find('> .notion-callout__content').children().length <= 1) { //This is a CTA button!
+                parseCTAbutton(this);
+            }
+
             //$(this).has('.notion-callout__content > .notion-image:nth-child(2)').each(function() { calloutFixImage(this, 'image-body')});
-            $(this).has('.notion-callout__icon img').each(function() { calloutFixImage(this, 'image-icon')});
-            $(this).has('.notion-callout__content > .notion-embed:nth-child(2)').each(function() { calloutFixVideo(this)});
+            $(this).has('> .notion-callout__icon img').each(function() { calloutFixImage(this, 'image-icon')});
+            $(this).has('> .notion-callout__content > .notion-embed:nth-child(2)').each(function() { calloutFixVideo(this) });
         });
     }
 
