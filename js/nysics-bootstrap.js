@@ -6,7 +6,8 @@ class nysicsbootstrap {
         navbar: {
             title: false,
             links: []
-        }
+        },
+        lightboxOn: false
     }
 
     createNav() {
@@ -151,6 +152,41 @@ class nysicsbootstrap {
         }
     }
 
+    lightbox() {
+        console.log('Init Lightbox')
+        var lightboxContainer = $('<div class="n-lightbox"></div>');
+        var initLightbox = function() {
+            $('body').prepend(lightboxContainer);
+            
+            $(lightboxContainer).append('<div class="n-lightbox__blocker"></div>').on("contextmenu",function(){
+                    return false;
+                }); 
+            $(lightboxContainer).append('<span id="n-lightbox__close"><a>Close Lightbox &times;</a></span>')
+            
+            $(lightboxContainer).on("click", function(){
+                $(this).addClass('closing');
+                var thisI = this;
+                setTimeout(function() {
+                    $(thisI).removeClass('open');
+                    $(thisI).find('img').remove();
+                    $(thisI).removeClass('closing');
+                },700);
+            })
+        }
+        if (!this.config.lightboxOn) {
+            this.config.lightboxOn = true;
+            initLightbox();
+        }
+        $('article .notion-image img').each(function(index) {
+            console.log(`Lightbox num: ${index}`)
+            $(this).on("click", function() {
+                console.log('Clicked!')
+                $('.n-lightbox').append('<img src="'+$(this).attr('src') + '">');
+                $('.n-lightbox').addClass('open');
+            })
+        })
+    }
+
     pageInit() {
         console.log('PageInit');
 
@@ -285,6 +321,7 @@ class nysicsbootstrap {
 
         }
         var calloutFixVideo = function(self) {
+            try {
             $(self).addClass('contains-embed');
 
             var isVideo = false;
@@ -336,6 +373,7 @@ class nysicsbootstrap {
                 });
                 videoSize();
             }
+        } catch {}
 
         }
 
@@ -352,6 +390,9 @@ class nysicsbootstrap {
             $(this).has('> .notion-callout__icon img').each(function() { calloutFixImage(this, 'image-icon')});
             $(this).has('> .notion-callout__content > .notion-embed:nth-child(2)').each(function() { calloutFixVideo(this) });
         });
+
+        // Call Lightbox
+        this.lightbox();
     }
 
     startMutation() {

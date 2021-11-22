@@ -50,7 +50,9 @@
   --collection-card-cover-size-small: 200px !important;
   --collection-card-cover-size-medium: 280px !important;
   --collection-card-cover-size-large: 350px !important;
+  --collection-card-border-radius: 15px;
   --callout-bg-color: var(--color-bg-default);
+  --callout-border-radius: 20px;
   --navHeight: 80px;
   --navScreenMargin: 20px;
   --button-radius: 20px;
@@ -392,11 +394,12 @@ h3 .notion-semantic-string {
 
 /* Callouts */
 .notion-callout:not(.n-cta-button) {
+  --callout-border-radius: 15px;
+  --text-shadow-callout: 0px 3px 20px var(--callout-bg-color);
   position: relative;
-  border-radius: 15px;
+  border-radius: var(--callout-border-radius);
   padding: 0px;
   margin: 0px;
-  --text-shadow-callout: 0px 3px 20px var(--callout-bg-color);
 }
 .notion-callout:not(.n-cta-button) > .notion-callout__icon {
   display: none;
@@ -457,7 +460,7 @@ h3 .notion-semantic-string {
   width: 100vw;
   align-self: center;
   border: none !important;
-  border-radius: 0px !important;
+  --callout-border-radius: 0px !important;
 }
 .n-callout-hero > .notion-callout__content {
   width: 100%;
@@ -533,8 +536,8 @@ h3 .notion-semantic-string {
 }
 
 .n-callout-children .notion-callout:not(.n-cta-button) {
+  --callout-border-radius:3vw;
   align-self: stretch;
-  border-radius: 3vw;
   box-shadow: var(--boxshadow-default);
   border: solid 2px rgba(255, 255, 255, 0.5);
   transition: all 0.5s ease-in-out;
@@ -556,6 +559,7 @@ h3 .notion-semantic-string {
   opacity: 0.5;
   transition: all ease-in-out 0.5s;
   z-index: 2;
+  border-radius: calc(var(--callout-border-radius)+2px);
 }
 .n-callout-children .notion-callout:not(.n-cta-button) .notion-callout__content {
   padding: 20px 25px;
@@ -613,7 +617,7 @@ h3 .notion-semantic-string {
 
 /* CTA Buttons */
 .n-cta-button {
-  border-radius: 20px !important;
+  border-radius: var(--button-radius) !important;
   padding: 10px 15px !important;
   font-weight: bold;
   text-transform: uppercase;
@@ -709,7 +713,8 @@ h3 .notion-semantic-string {
   padding: 0px;
   margin: 0px;
   background-color: black;
-  border-radius: inherit;
+  border-radius: var(--callout-border-radius);
+  overflow: hidden;
 }
 .notion-callout__bg::before {
   content: "";
@@ -722,6 +727,7 @@ h3 .notion-semantic-string {
   z-index: 3;
   opacity: 0.5;
   background-color: var(--callout-bg-color);
+  border-radius: var(--callout-border-radius);
 }
 .notion-callout__bg .notion-callout__bg__embed, .notion-callout__bg .notion-callout__bg__image-icon, .notion-callout__bg .notion-callout__bg__image-body {
   position: absolute;
@@ -734,6 +740,7 @@ h3 .notion-semantic-string {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  border-radius: var(--callout-border-radius);
 }
 .notion-callout__bg .notion-callout__bg__embed iframe {
   height: 100%;
@@ -747,6 +754,7 @@ h3 .notion-semantic-string {
 }
 .notion-callout__bg .notion-callout__bg__image-icon, .notion-callout__bg .notion-callout__bg__image-body {
   z-index: 1;
+  border-radius: var(--callout-border-radius);
 }
 .notion-callout__bg .notion-callout__bg__image-body {
   -webkit-animation: bgImageIn 1.5s ease-in-out;
@@ -1139,7 +1147,7 @@ body.n-contains-hero .notion-header {
   flex-direction: column;
   justify-content: flex-end;
   box-shadow: var(--boxshadow-default);
-  border-radius: 20px;
+  border-radius: var(--collection-card-border-radius);
   margin: 0px !important;
   padding: 0px !important;
   transition: 0.5s all ease-in-out;
@@ -1164,6 +1172,8 @@ body.n-contains-hero .notion-header {
   border: none !important;
   transform: scale(1);
   transition: 0.5s all ease-in-out;
+  border-radius: var(--collection-card-border-radius);
+  overflow: hidden;
 }
 .notion-collection .notion-collection-gallery .notion-collection-card.gallery .notion-collection-card__cover img {
   -o-object-position: center center !important;
@@ -1179,6 +1189,7 @@ body.n-contains-hero .notion-header {
   left: 0px;
   z-index: 3;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.7) 80%);
+  border-radius: var(--collection-card-border-radius);
 }
 .notion-collection .notion-collection-gallery .notion-collection-card.gallery .notion-property.notion-property__title {
   padding-bottom: 0px;
@@ -1281,6 +1292,188 @@ body.n-contains-hero .notion-header {
           }
       }
   }*/
+}
+/* Nysics Lightbox */
+.n-lightbox {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: -1;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding: 1vh 1vw;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  cursor: zoom-out;
+}
+
+.n-lightbox.open {
+  z-index: 200000;
+  display: flex;
+  -webkit-animation-name: n-lightboxOpen;
+          animation-name: n-lightboxOpen;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+
+.n-lightbox.open.closing {
+  -webkit-animation-name: n-lightboxClose;
+          animation-name: n-lightboxClose;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+
+.n-lightbox .n-lightbox__blocker {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: zoom-out;
+}
+
+.n-lightbox img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  opacity: 0;
+}
+
+.n-lightbox.open img {
+  -webkit-animation-name: n-lightboxOpenImg;
+          animation-name: n-lightboxOpenImg;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  opacity: 1;
+  cursor: zoom-out;
+}
+
+.n-lightbox.open.closing img {
+  -webkit-animation-name: n-lightboxCloseImg;
+          animation-name: n-lightboxCloseImg;
+  -webkit-animation-duration: 0.7s;
+          animation-duration: 0.7s;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+.n-lightbox #n-lightbox__close {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 2vh 2vw;
+  text-align: right;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--color-text-red);
+  cursor: default;
+}
+
+@-webkit-keyframes n-lightboxOpen {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes n-lightboxOpen {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes n-lightboxClose {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes n-lightboxClose {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes n-lightboxOpenImg {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+    filter: blur(5px);
+  }
+  20% {
+    transform: scale(0.85);
+    opacity: 0;
+    filter: blur(5px);
+  }
+  80% {
+    filter: blur(0px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes n-lightboxOpenImg {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+    filter: blur(5px);
+  }
+  20% {
+    transform: scale(0.85);
+    opacity: 0;
+    filter: blur(5px);
+  }
+  80% {
+    filter: blur(0px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes n-lightboxCloseImg {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.85);
+    opacity: 0;
+    filter: blur(5px);
+  }
+}
+@keyframes n-lightboxCloseImg {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.85);
+    opacity: 0;
+    filter: blur(5px);
+  }
 }
 #block-d79aa4dadc4847ec95276c136b84d8e0 {
   background-color: var(--color-bg-default) !important;

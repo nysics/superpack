@@ -31,7 +31,7 @@
         flex-direction: column;
         justify-content: flex-end;
         box-shadow: var(--boxshadow-default);
-        border-radius: 20px;
+        border-radius: var(--collection-card-border-radius);
         margin: 0px !important;
         padding: 0px !important;
         transition: 0.5s all ease-in-out;
@@ -59,6 +59,8 @@
             border: none !important;
             transform: scale(1);
             transition: 0.5s all ease-in-out;
+            border-radius: var(--collection-card-border-radius);
+            overflow: hidden;
 
             img {
                 object-position: center center !important;
@@ -74,6 +76,7 @@
                 left: 0px;
                 z-index: 3;
                 background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.7) 80%);
+                border-radius: var(--collection-card-border-radius);
             }
         }
     

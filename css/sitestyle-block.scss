@@ -54,8 +54,10 @@
     --collection-card-cover-size-small: 200px !important;
     --collection-card-cover-size-medium: 280px !important;
     --collection-card-cover-size-large: 350px !important;
+    --collection-card-border-radius: 15px;
 
     --callout-bg-color: var(--color-bg-default);
+    --callout-border-radius: 20px;
 
     --navHeight: 80px;
     --navScreenMargin: 20px;
@@ -381,12 +383,14 @@ h3 .notion-semantic-string{
 
 /* Callouts */
 .notion-callout:not(.n-cta-button){
+    --callout-border-radius: 15px;
+    --text-shadow-callout: 0px 3px 20px var(--callout-bg-color);
+
     position: relative;
-    border-radius:15px;
+    border-radius:var(--callout-border-radius);
     padding: 0px;
     margin: 0px;
 
-    --text-shadow-callout: 0px 3px 20px var(--callout-bg-color);
     
     & > .notion-callout__icon {
         display: none;
@@ -455,7 +459,7 @@ h3 .notion-semantic-string{
     width: 100vw;
     align-self: center;
     border:none !important;
-    border-radius: 0px !important;
+    --callout-border-radius: 0px !important;
 
     & > .notion-callout__content {
         width: 100%;
@@ -536,8 +540,8 @@ h3 .notion-semantic-string{
 
 //The Four Buttons
 .n-callout-children .notion-callout:not(.n-cta-button) {
+    --callout-border-radius:3vw;
     align-self: stretch;
-    border-radius: 3vw;
     box-shadow: var(--boxshadow-default);
     border:solid 2px rgba(255, 255, 255, .5);
     transition: all .5s ease-in-out;
@@ -559,6 +563,7 @@ h3 .notion-semantic-string{
             opacity: .5;
             transition: all ease-in-out .5s;
             z-index: 2;
+            border-radius: calc(var(--callout-border-radius)+2px);
         }
     }
 
@@ -623,7 +628,7 @@ h3 .notion-semantic-string{
 
 /* CTA Buttons */
 .n-cta-button {
-    border-radius: 20px !important;
+    border-radius: var(--button-radius) !important;
     padding: 10px 15px !important;
     font-weight: bold;
     text-transform: uppercase;
@@ -715,7 +720,8 @@ h3 .notion-semantic-string{
     padding: 0px;
     margin: 0px;
     background-color: black;
-    border-radius: inherit;
+    border-radius: var(--callout-border-radius);
+    overflow: hidden;
 
     &::before {
         content: "";
@@ -728,6 +734,7 @@ h3 .notion-semantic-string{
         z-index: 3;
         opacity: .5;
         background-color: var(--callout-bg-color);
+        border-radius: var(--callout-border-radius);
         //background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.7));
     }
 
@@ -743,6 +750,7 @@ h3 .notion-semantic-string{
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        border-radius: var(--callout-border-radius);
 
         &.contains-video iframe {
             //transform: translateY(-50%);
@@ -761,6 +769,7 @@ h3 .notion-semantic-string{
     }
     .notion-callout__bg__image-icon, .notion-callout__bg__image-body {
         z-index: 1;
+        border-radius: var(--callout-border-radius);
     }
     .notion-callout__bg__image-body {
 
@@ -812,6 +821,124 @@ h3 .notion-semantic-string{
 @import './sitestyle-block-mobile.scss';
 }
 //}
+
+
+/* Nysics Lightbox */
+.n-lightbox {
+    display:none;
+    height:100vh;
+    width:100vw;
+    background-color:rgba(0,0,0,.8);
+    z-index:-1;
+    position:fixed;
+    top:0px;
+    left:0px;
+    padding:1vh 1vw;
+    backdrop-filter:blur(5px);
+    cursor:zoom-out;
+}
+    .n-lightbox.open {
+        z-index:200000;
+        display:flex;
+        animation-name: n-lightboxOpen;
+        animation-duration: .5s;
+    }
+    .n-lightbox.open.closing {
+        animation-name: n-lightboxClose;
+        animation-delay:.2s;
+        animation-duration: .5s;
+    }
+.n-lightbox .n-lightbox__blocker {
+    display:block;
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    z-index:2;
+    cursor:zoom-out;
+}
+.n-lightbox img {
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    opacity:0;
+}
+    .n-lightbox.open img {
+    animation-name: n-lightboxOpenImg;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    opacity:1;
+    cursor:zoom-out;
+    }
+    .n-lightbox.open.closing img {
+        animation-name: n-lightboxCloseImg;
+        animation-duration: .7s;
+        animation-delay: 0s;
+    }
+.n-lightbox #n-lightbox__close {
+    display:block;
+    width:100%;
+    position:absolute;top:0px;left:0px;
+    padding:2vh 2vw;
+    text-align:right;
+    z-index:2;
+    background-color:rgba(0,0,0,.8);
+    text-transform:uppercase;
+    letter-spacing:1.4px;
+    color:var(--color-text-red);
+    cursor:default;
+}
+@keyframes n-lightboxOpen {
+  0% {
+    opacity:0;
+  }
+
+  100% {
+    opacity:1;
+  }
+}
+@keyframes n-lightboxClose {
+  0% {
+    opacity:1;
+  }
+
+  100% {
+    opacity:0;
+  }
+}
+@keyframes n-lightboxOpenImg {
+  0% {
+    transform: scale(.85);
+    opacity:0;
+    filter:blur(5px);
+  }
+  20% {
+    transform: scale(.85);
+    opacity:0;
+    filter:blur(5px);
+  }
+    80% {
+        
+    filter:blur(0px);
+    }
+  100% {
+    transform: scale(1);
+    opacity:1;
+  }
+}
+@keyframes n-lightboxCloseImg {
+  0% {
+    transform: scale(1);
+    opacity:1;
+  }
+  100% {
+    transform: scale(.85);
+    opacity:0;
+    filter:blur(5px);
+  }
+}
+
 
 
 //Footer
