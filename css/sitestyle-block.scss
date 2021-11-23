@@ -1,3 +1,18 @@
+/*
+ _______ _______ _______ _______ __   __ 
+|       |   _   |       |       |  | |  |
+|_     _|  |_|  |    ___|    ___|  |_|  |
+  |   | |       |   |___|   |___|       |
+  |   | |       |    ___|    ___|_     _|
+  |   | |   _   |   |   |   |     |   |  
+  |___| |__| |__|___|   |___|     |___|  
+
+  by Nysics Media
+
+  v. 1.0.1
+  2021-11-22
+*/
+
 @import './src/scssmixins.scss';
 
 
@@ -58,6 +73,8 @@
 
     --callout-bg-color: var(--color-bg-default);
     --callout-border-radius: 20px;
+
+    --body-background: linear-gradient(180deg, rgba(214,247,255,1), rgba(255,255,255,1));
 
     --navHeight: 80px;
     --navScreenMargin: 20px;
@@ -169,7 +186,7 @@ body {
     }
 
     &:before {
-        background: linear-gradient(180deg, rgba(214,247,255,1), rgba(255,255,255,1)) !important;
+        background: var(--body-background) !important;
         content: "";
         position: fixed;
         top:0px;
@@ -213,9 +230,9 @@ h3 .notion-semantic-string{
     text-transform: uppercase;
 }
 
-#page-index .notion-header {
+/*#page-index .notion-header {
     display: none;
-}
+}*/
 
 
 @import './src/notion-reset.scss';
@@ -461,11 +478,17 @@ h3 .notion-semantic-string{
     border:none !important;
     --callout-border-radius: 0px !important;
 
+    &.contains-image, &.contains-embed {
+        & > .notion-callout__content {
+
+            text-shadow: var(--text-shadow-default), var(--text-shadow-default);
+        }
+    }
+
     & > .notion-callout__content {
         width: 100%;
         padding: 50px var(--padding-safe-area-left) 50px var(--padding-safe-area-right) !important;
         margin-top: 0px !important;
-        text-shadow: var(--text-shadow-default), var(--text-shadow-default);
 
         & > .notion-semantic-string {
             display: none;
