@@ -27,6 +27,7 @@ class nysicsbootstrap {
             navContainer.append(contentContainer);
 
         // Grab logo
+        //TODO: Catch when site doesn't use logo
         var siteInfo = document.getElementsByClassName('notion-breadcrumb__item')[0];
             var siteNAME = siteInfo.getElementsByClassName('notion-navbar__title')[0].innerHTML;
             var siteIMG = siteInfo.getElementsByTagName('img')[0];
@@ -439,7 +440,7 @@ class nysicsbootstrap {
 
             //this.loadHTML(true);
             $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">')
-            this.createNav();
+            //this.createNav();
             this.pageInit();
             this.startMutation();
 
