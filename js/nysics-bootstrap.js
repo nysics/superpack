@@ -291,9 +291,13 @@ var nconfig = {
             $('.notion-header__content').append(props);
         }
 
-        if($('body').has('.notion-navbar')) {
+        if($('body').has('.notion-navbar').length >= 1) { //If site uses Notion Navbar
             console.log('has Notion navbar');
             document.documentElement.style.setProperty('--navHeight', '45px');
+            document.documentElement.style.setProperty('--navScreenMargin', '0px');
+        }
+        else if ($('body').has('.super-navbar').length == 0) { //If site has no navbar
+            document.documentElement.style.setProperty('--navHeight', '0px');
             document.documentElement.style.setProperty('--navScreenMargin', '0px');
         }
         
