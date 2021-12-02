@@ -70,8 +70,18 @@
         &.has-icon {
             padding-top: 25px;
         }
+        &.has-icon-image {
+            padding-top: 0px;
+        }
         &:not(.has-props) {
             padding-bottom: calc(var(--padding-safe-area-bottom) + 100px);
+        }
+
+        .notion-header__icon-wrapper.has-icon-image {
+            width: calc(100% + var(--padding-safe-area-left) + (var(--padding-s-lr)/2)) !important;
+            position: relative;
+            right: calc(var(--padding-safe-area-left));
+            padding-bottom: 20px;
         }
 
         .notion-header__icon-wrapper.has-icon {
@@ -96,6 +106,7 @@
 
         display: flex !important;
         flex-direction: row;
+        flex-wrap: wrap;
         height: auto;
         width: 100%;
         justify-content: flex-start;
@@ -129,7 +140,6 @@
     --content-padding-r: calc(var(--padding-safe-area-right) + var(--padding-fullwidth-lr)); // 
 
     width: var(--page-Content-Width);
-    max-width: unset;
     margin-left: 40%;
     margin-top: calc(var(--navHeight) + var(--navScreenMargin) + var(--navScreenMargin));
     padding-right: var(--content-padding-r) !important;

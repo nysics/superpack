@@ -17,6 +17,8 @@
 
 
 :root {
+    --isDarkMode: false;
+    
     --color-text-default: rgb(55, 53, 47)  !important;
     --color-text-default-light: rgba(55, 53, 47, 0.6)  !important;
     --color-text-default-ondark: white  !important;
@@ -29,6 +31,15 @@
     --color-text-purple: rgb(105, 64, 165) !important;
     --color-text-pink: rgb(173, 26, 114) !important;
     --color-text-red: rgb(224, 62, 62) !important;
+    --color-text-gray-light: rgb(235, 236, 237) !important;
+    --color-text-brown-light: rgb(233, 229, 227) !important;
+    --color-text-orange-light: rgb(250, 235, 221) !important;
+    --color-text-yellow-light: rgb(251, 243, 219) !important;
+    --color-text-green-light: rgb(221, 237, 234) !important;
+    --color-text-blue-light: rgb(221, 235, 241) !important;
+    --color-text-purple-light: rgb(234, 228, 242) !important;
+    --color-text-pink-light: rgb(244, 223, 235) !important;
+    --color-text-red-light: rgb(251, 228, 228) !important;
     --color-bg-default: rgb(255, 255, 255) !important;
     --color-bg-gray: rgb(235, 236, 237) !important;
     --color-bg-brown: rgb(233, 229, 227) !important;
@@ -65,17 +76,20 @@
     --color-border-default: rgba(235, 236, 237, 0.8) !important;
     --color-border-dark: rgba(55, 53, 47, 0.16) !important;
 
+    --body-background: linear-gradient(180deg, rgba(214,247,255,1), rgba(255,255,255,1));
+
     --column-spacing: 20px !important;
     --collection-card-cover-size-small: 200px !important;
     --collection-card-cover-size-medium: 280px !important;
     --collection-card-cover-size-large: 350px !important;
     --collection-card-border-radius: 15px;
 
+    // Callout
     --callout-bg-color: var(--color-bg-default);
     --callout-border-radius: 20px;
 
-    --body-background: linear-gradient(180deg, rgba(214,247,255,1), rgba(255,255,255,1));
 
+    // Nav
     --navHeight: 80px;
     --navScreenMargin: 20px;
     --button-radius: 20px;
@@ -89,6 +103,7 @@
 
     --divider-thickness: 40px;
 
+    // Shadows
     --boxshadow-default: 0px 3px 25px rgba(0,0,0,.2);
     --boxshadow-callout: 0px 3px 25px  var(--callout-bg-color);
     --boxshadow-heavy: 0px 5px 35px rgba(0,0,0,.4);
@@ -96,6 +111,7 @@
     --text-shadow-callout: 0px 3px 25px var(--callout-bg-color);
     --text-shadow-heavy: 0px 3px 15px rgba(0, 0, 0, 1),  0px 0px 25px rgba(0, 0, 0, .5);
 
+    // Padding
     --padding-safe-area-top:  calc(env(safe-area-inset-top) + var(--navHeight) + var(--navScreenMargin));
     --padding-s-lr: 96px;
     --padding-safe-area-bottom:  calc(env(safe-area-inset-bottom));
@@ -103,6 +119,7 @@
     --padding-safe-area-right:  calc(env(safe-area-inset-right) + var(--padding-s-lr));
     --padding-fullwidth-lr: 5vw;
 
+    // Galleries
     --props-gap: 8px;
 
     --page-Header-Width: 40%;
@@ -154,11 +171,7 @@ html, body {
 
     min-height: 100%;
     &, .notion-semantic-string {
-        font-family: 'Open Sans', sans-serif;
     }
-}
-.notion-toggle.bg-purple {
-    display: none;
 }
 .notion-semantic-string span {
     overflow-x: visible;
@@ -171,6 +184,9 @@ html.loaded {
     transition: opacity 1s ease-in-out;
 }*/
 //html.modified {
+html {
+    scroll-behavior: smooth;
+}
 body {
     background-color: transparent;
     background-attachment: fixed;
@@ -197,13 +213,17 @@ body {
     }
 }
 
+.notion-heading__anchor {
+    top: calc(-1 * var(--padding-safe-area-top) - 20px) !important;
+}
+
 h1, h2, h3, h4, h5, .notion-heading {
     //overflow: auto;
     margin-bottom: 10px !important;
     margin-top: 5px;
 
     &, .notion-semantic-string {
-        font-family: var(--title-font-family) !important;
+        //font-family: var(--title-font-family) !important;
         font-weight: 300;
         line-height: 1em !important;
         word-break:normal;
@@ -237,9 +257,29 @@ h3 .notion-semantic-string{
 
 @import './src/notion-reset.scss';
 
+
+
 /* Navbar */
-.notion-navbar {
+/*.notion-navbar {
     display: none !important;
+}*/
+.notion-navbar {
+    --padding-LR: 20px;
+    --padding-TB: 10px;
+
+    display: block;
+    padding-left: var(--padding-safe-area-left) !important;
+    padding-right: var(--padding-safe-area-right) !important;
+    width: 100% !important;
+    position: fixed !important;
+    top: calc(0px + env(safe-area-inset-top));
+    left:0px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background-color: transparent !important;
+
+    backdrop-filter: blur(25px) brightness(120%);
+    -webkit-backdrop-filter: blur(25px) brightness(120%);
 }
 .super-navbar {
     --padding-LR: 20px;
@@ -399,12 +439,82 @@ h3 .notion-semantic-string{
 
 
 /* Callouts */
-.notion-callout:not(.n-cta-button){
-    --callout-border-radius: 15px;
+.notion-callout {
+    background-color: var(--callout-bg-color) !important;
+
+    margin-top: var(--props-gap) !important;
+    margin-bottom: var(--props-gap) !important;
+
+    overflow: hidden;
+
+    .notion-callout__content {
+        width: 100%;
+    }
+
+    &.contains-link {
+        position: relative;
+        & > .notion-link.notion-callout-link-container {
+            position: absolute;
+            top: 0px;
+            left:0px;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+    } 
+
+    &.contains-background {
+        position: relative;
+
+        .notion-callout__content {
+            position: relative;
+            z-index: 3;
+        }
+    }
+
+    &.bg-gray-light {
+        --callout-bg-color: var(--color-text-default);
+        color: var(--color-text-default-ondark);
+    }
+    &.bg-brown-light {
+        --callout-bg-color: var(--color-text-brown);
+        color: var(--color-text-default-ondark);
+    }
+    &.bg-orange-light {
+        --callout-bg-color: var(--color-text-orange);
+        color: var(--color-text-default-ondark);
+    }
+    &.bg-yellow-light {
+        --callout-bg-color: var(--color-text-yellow);
+        color: var(--color-text-default-ondark);
+    }
+    &.bg-green-light {
+        --callout-bg-color: var(--color-text-green);
+        color: var(--color-text-default-ondark);
+    }
+    &.bg-blue-light {
+        --callout-bg-color: var(--color-text-blue);
+        color: var(--color-text-default-ondark);
+    }
+    &.bg-purple-light {
+        --callout-bg-color: var(--color-text-purple);
+        color: var(--color-text-default-ondark);
+    }
+    &.bg-pink-light {
+        --callout-bg-color: var(--color-text-pink);
+        color: var(--color-text-default-ondark);
+    }
+    &.bg-red-light {
+        --callout-bg-color: var(--color-text-red);
+        color: var(--color-text-default-ondark);
+    }
+}
+
+.n-section {
     --text-shadow-callout: 0px 3px 20px var(--callout-bg-color);
 
     position: relative;
-    border-radius:var(--callout-border-radius);
+    border-radius:calc(var(--callout-border-radius) - 5px) !important;
     padding: 0px;
     margin: 0px;
 
@@ -413,7 +523,7 @@ h3 .notion-semantic-string{
         display: none;
     }
     & > .notion-callout__content {
-        & > .notion-semantic-string {
+        & > .notion-semantic-string:first-child {
             display: none;
         }
         position: relative;
@@ -431,33 +541,7 @@ h3 .notion-semantic-string{
     }
 
 
-    &.bg-gray-light {
-        --callout-bg-color: var(--color-text-default);
-    }
-    &.bg-brown-light {
-        --callout-bg-color: var(--color-text-brown);
-    }
-    &.bg-orange-light {
-        --callout-bg-color: var(--color-text-orange);
-    }
-    &.bg-yellow-light {
-        --callout-bg-color: var(--color-text-yellow);
-    }
-    &.bg-green-light {
-        --callout-bg-color: var(--color-text-green);
-    }
-    &.bg-blue-light {
-        --callout-bg-color: var(--color-text-blue);
-    }
-    &.bg-purple-light {
-        --callout-bg-color: var(--color-text-purple);
-    }
-    &.bg-pink-light {
-        --callout-bg-color: var(--color-text-pink);
-    }
-    &.bg-red-light {
-        --callout-bg-color: var(--color-text-red);
-    }
+    
 
     &.contains-image {
 
@@ -478,13 +562,16 @@ h3 .notion-semantic-string{
     border:none !important;
     --callout-border-radius: 0px !important;
 
-    &.contains-image, &.contains-embed {
+    &.contains-background {
         & > .notion-callout__content {
-
+            color: var(--color-text-default-ondark);
             text-shadow: var(--text-shadow-default), var(--text-shadow-default);
         }
     }
 
+    & > .notion-callout__icon {
+        display: none;
+    }
     & > .notion-callout__content {
         width: 100%;
         padding: 50px var(--padding-safe-area-left) 50px var(--padding-safe-area-right) !important;
@@ -544,55 +631,68 @@ h3 .notion-semantic-string{
     align-items: stretch !important;
 
     .notion-column {
-        align-items: stretch;
+        align-items: stretch !important;
+        min-height:12vw;
+    }
 
-        & > a > div{
-            min-height:12vw;
-            display: flex;
-            align-items: flex-end;
+    .notion-column > div {
 
-            @include breakpoint($bp-lg) {
-                min-height: 120px;
+        margin-bottom: calc(var(--props-gap) * 2) !important;
+
+        --callout-border-radius:3vw;
+
+        height: 100%;
+        min-height: 200px;
+        display: flex;
+        align-items: flex-end;
+        align-self: stretch;
+        box-shadow: var(--boxshadow-default);
+        border:solid 2px rgba(255, 255, 255, 1) !important;
+        transition: transform .5s ease-in-out;
+        border-radius: var(--callout-border-radius) !important;
+
+        @include breakpoint($bp-lg) {
+            min-height: 120px;
+            --callout-border-radius:50px;
+        }
+
+        &.contains-background {
+            text-shadow: var(--text-shadow-default), var(--text-shadow-default);
+            color: var(--color-text-default-ondark);
+        }
+        .notion-callout__bg {
+            //animation: bgImageIn 1s ease-in-out 1.5s;
+            &::before {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                content: "";
+                background-color: white;
+                height: 100%;
+                width: 100%;
+                opacity: .5;
+                transition: all ease-in-out .5s;
+                z-index: 2;
+                border-radius: calc(var(--callout-border-radius)+2px);
             }
         }
-        & .notion-picture {
-            min-height: 12vw;;
+
+
+        &:hover {
+            transform: scale(1.05);
+
+        .notion-callout__bg {
+                &::before {
+                    opacity: .1;
+                }
+            }
         }
-    }
-}
 
-//The Four Buttons
-.n-callout-children .notion-callout:not(.n-cta-button) {
-    --callout-border-radius:3vw;
-    align-self: stretch;
-    box-shadow: var(--boxshadow-default);
-    border:solid 2px rgba(255, 255, 255, .5);
-    transition: all .5s ease-in-out;
-    text-shadow: var(--text-shadow-default), var(--text-shadow-default);
-    @include breakpoint($bp-lg) {
-        border-radius: 50px;
-    }
 
-    .notion-callout__bg {
-        //animation: bgImageIn 1s ease-in-out 1.5s;
-        &::before {
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            content: "";
-            background-color: white;
-            height: 100%;
-            width: 100%;
-            opacity: .5;
-            transition: all ease-in-out .5s;
-            z-index: 2;
-            border-radius: calc(var(--callout-border-radius)+2px);
+        h1 {
+            margin-top:0px;
+            margin-bottom: 0px;
         }
-    }
-
-    .notion-callout__content {
-        padding: 20px 25px;
-        width: 100%;
 
         h1 .notion-semantic-string{
             font-size: 2vw;
@@ -601,65 +701,25 @@ h3 .notion-semantic-string{
                 font-size: 1.2em;
             }
         }
-    }
-    .notion-callout__content > .notion-semantic-string, .notion-callout__icon {
-        display: none !important;
+
     }
 
-    h1 {
-        margin-top:0px;
-        margin-bottom: 0px;
-    }
-
-    &:hover {
-        transform: scale(1.05);
-
-       .notion-callout__bg {
-            &::before {
-                opacity: .1;
-            }
-        }
-    }
-}
-.n-callout-children .notion-callout__bg .notion-image.page-width {
-    border-radius: 70px;
-    box-shadow: var(--boxshadow-default);
-    border:solid 2px rgba(255, 255, 255, .5);
-    transition: all .5s ease-in-out;
-    overflow: hidden;
-
-    img, picture, a {
-        height: 100%;
-        object-fit: cover;
-        display: block;
-
-    transition: all .5s ease-in-out;
-    }
-    &:hover img {
-        transform: scale(1.05);
-    }
-}
-.n-callout-children .notion-column > .notion-collection .notion-collection-card {
-    width: 100%;
-    min-width: unset !important;
-}
-.n-callout-children .notion-column > .notion-collection .notion-collection-card:not(:first-child) {
-    display: none;
 }
 
 
-
-/* CTA Buttons */
-.n-cta-button {
+/* CTA Buttons + Callouts */
+.n-cta-button, .n-callout {
     border-radius: var(--button-radius) !important;
     padding: 10px 15px !important;
     font-weight: bold;
-    text-transform: uppercase;
     text-shadow: none;
     align-content: center;
     justify-content: center;
     box-shadow: var(--boxshadow-default);
     transition: all ease-in-out .2s;
+    background-color: var(--button-color) !important;
+    cursor: default;
+    color: var(--color-text-default-ondark);
 
 
     &.bg-gray-light {
@@ -690,18 +750,28 @@ h3 .notion-semantic-string{
         --button-color: var(--color-text-red);
     }
 
+    &.border {
+        border-width: 3px !important;
+        border-style: solid !important;
+    }
     &.btn-primary {
-        color: white;
-        border: solid 3px white !important;
-        background-color: var(--button-color);
+        border-color: white !important;
     }
     &.btn-secondary {
-        border: solid 3px var(--button-color) !important;
-        background-color: white;
-        color: var(--button-color)
+        border-color: var(--button-color) !important;
+        background-color: white !important;
+        color: var(--button-color) !important;
     }
 
-    &:hover {
+
+    &.contains-link {
+        text-transform: uppercase;
+        .notion-callout__icon {
+            text-align: right;
+            order: 2;
+        }
+    }
+    &.contains-link:hover {
         transform: scale(1.03);
         box-shadow: 0px 3px 15px var(--button-color);
         .notion-callout__content {
@@ -710,17 +780,14 @@ h3 .notion-semantic-string{
     }
 
     .notion-callout__icon {
-        order: 2;
-        text-align: right;
+        order: unset;
     }
-
     .notion-callout__content {
         margin-left: 0px !important;
         flex-grow: 2;
     }
 
 }
-
 
 @keyframes bgImageIn {
     0% {
@@ -742,8 +809,7 @@ h3 .notion-semantic-string{
     z-index: 1;
     padding: 0px;
     margin: 0px;
-    background-color: black;
-    border-radius: var(--callout-border-radius);
+    background-color: var(--callout-bg-color);
     overflow: hidden;
 
     &::before {
@@ -757,7 +823,6 @@ h3 .notion-semantic-string{
         z-index: 3;
         opacity: .5;
         background-color: var(--callout-bg-color);
-        border-radius: var(--callout-border-radius);
         //background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.7));
     }
 
@@ -773,7 +838,6 @@ h3 .notion-semantic-string{
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        border-radius: var(--callout-border-radius);
 
         &.contains-video iframe {
             //transform: translateY(-50%);
@@ -792,7 +856,6 @@ h3 .notion-semantic-string{
     }
     .notion-callout__bg__image-icon, .notion-callout__bg__image-body {
         z-index: 1;
-        border-radius: var(--callout-border-radius);
     }
     .notion-callout__bg__image-body {
 
@@ -825,6 +888,9 @@ h3 .notion-semantic-string{
     body.n-normal-width:not(.n-contains-hero) {
         @import './layout/normal-width.scss';
     }
+    body.n-normal-width .super-content {
+        max-width: 1200px;
+    }
 }
 // Mobile
 @media only screen and (max-width: $bp-xl), screen and (max-height: 400px)  {
@@ -835,6 +901,34 @@ h3 .notion-semantic-string{
 .notion-header {
     body.n-contains-hero & {
         display: none !important;
+    }
+
+    .notion-header__icon-wrapper.has-icon-image {
+        display: block;
+        min-height: unset;
+        height: unset;
+        width: inherit !important;
+        top: unset !important;
+        bottom: unset;
+        position: relative;
+        margin: 0px;
+        padding: 0px;
+
+        span {
+            height: fit-content !important;
+            width: 100% !important;
+            position: unset !important;
+        }
+
+        img {
+            height: unset !important;
+            width: unset !important;
+            max-width: 100% !important;
+            max-height: unset !important;
+            min-width: unset !important;
+            min-height: unset !important;
+            position: unset !important;
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 @import './scssmixins.scss';
 
 .notion-toggle.bg-purple {
-    //display: none;
+    display: none;
 }
 .notion-callout > .notion-callout__content {
     margin-left: 0px;
@@ -51,7 +51,7 @@
     padding-bottom: var(--padding-safe-area-bottom) !important;
 
     .notion-text {
-        padding-bottom: 15px;
+        padding-bottom: 10px;
     }
 }
 
@@ -63,3 +63,10 @@
     }
 }
 
+// Table of Contents
+@include breakpoint(null,$bp-lg) {
+    .notion-column > .notion-table-of-contents {
+        position: sticky;
+        top: var(--navHeight);
+    }
+}

@@ -86,6 +86,7 @@
     .notion-page__properties {
         display: flex;
         //padding-top: ;
+        flex-wrap: wrap;
         min-height: unset !important;
         .notion-property, .notion-page__property {
             min-height: unset !important;

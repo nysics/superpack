@@ -47,6 +47,15 @@
             color: var(--color-text-default);
             padding-top: calc(var(--padding-safe-area-top) + 100px);
         }
+
+
+
+        .notion-header__icon-wrapper.has-icon-image {
+            width: 100% !important;
+            padding-bottom: 25px;
+        }
+
+
         .notion-header__title-wrapper {
             margin: 0px;
 
