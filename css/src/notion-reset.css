@@ -11,6 +11,11 @@
   text-align: center;
 }
 
+.bg-brown {
+  background-color: transparent !important;
+  text-align: right;
+}
+
 .notion-divider {
   padding-top: var(--divider-thickness) !important;
   padding-bottom: var(--divider-thickness) !important;
