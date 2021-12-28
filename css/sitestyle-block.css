@@ -449,7 +449,7 @@ h3 .notion-semantic-string {
   background-color: var(--callout-bg-color) !important;
   margin-top: var(--props-gap) !important;
   margin-bottom: var(--props-gap) !important;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 .notion-callout .notion-callout__content {
   width: 100%;
